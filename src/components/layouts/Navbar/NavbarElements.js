@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const NavbarWrapper = styled.nav`
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -15,7 +15,7 @@ export const NavLogoLink = styled(Link)`
     font-size: 2.5rem;
     text-decoration: none;
     text-transform: uppercase;
-    color: #000;
+    color: #ffba08;
     font-weight: 800;
     display: flex;
     align-items: center;
