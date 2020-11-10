@@ -5,6 +5,7 @@ import { FormWrapper, StyledForm, InputWrapper, StyledInput, FormHeaderText } fr
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { signup, isAuth } from '../helpers/auth';
+import { Redirect } from 'react-router-dom';
 
 const Signup = () => {
     const [values, setValues] = useState({
