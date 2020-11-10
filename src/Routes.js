@@ -4,6 +4,9 @@ import ConfirmEmail from './components/auth/ConfirmEmail';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Home from './components/core/Home';
+import PrivateRoute from './components/protectedRoutes/PrivateRoute';
+import AdminDashboard from './components/user/AdminDashboard';
+import UserDashboard from './components/user/UserDashboard';
 
 const Routes = () => {
     return (
@@ -13,6 +16,8 @@ const Routes = () => {
                 <Route path="/signup" component={Signup} exact />
                 <Route path="/signin" component={Signin} exact />
                 <Route path="/user/verify/:token" component={ConfirmEmail} exact />
+                <PrivateRoute path="/user/dashboard" component={UserDashboard} exact />
+                <PrivateRoute path="/admin/dashboard" component={AdminDashboard} exact />
             </Switch>
         </Router>
     )
