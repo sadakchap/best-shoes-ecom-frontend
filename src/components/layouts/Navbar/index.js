@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MenuWrapper, NavbarWrapper, NavItemLink, NavList, NavListItem, NavLogoLink } from './NavbarElements';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { TiTimes } from 'react-icons/ti'
-import { signout } from '../../auth/helpers/auth';
+import { isAuth, signout } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
 
 
@@ -31,15 +31,20 @@ const Navbar = () => {
                     <NavListItem>
                         <NavItemLink to="/cart">Cart</NavItemLink>
                     </NavListItem>
-                    <NavListItem>
-                        <NavItemLink to="/signin">signin</NavItemLink>
-                    </NavListItem>
-                    <NavListItem>
-                        <NavItemLink to="/signup">sign up</NavItemLink>
-                    </NavListItem>
-                    <NavListItem>
-                        <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
-                    </NavListItem>
+                    { isAuth() ? (
+                        <NavListItem>
+                            <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
+                        </NavListItem>
+                    ) : (
+                        <>
+                            <NavListItem>
+                                <NavItemLink to="/signin">signin</NavItemLink>
+                            </NavListItem>
+                            <NavListItem>
+                                <NavItemLink to="/signup">sign up</NavItemLink>
+                            </NavListItem>
+                        </>
+                    )}
                 </NavList>
                 <MenuWrapper>
                     { isNavOpen ? (

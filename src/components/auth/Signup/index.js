@@ -4,7 +4,7 @@ import { Button, SpinnerWrapper, Spinner } from '../../reuseableComponents/Spinn
 import { FormWrapper, StyledForm, InputWrapper, StyledInput, FormHeaderText } from './SignupElements';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
-import { signup } from '../helpers/auth';
+import { signup, isAuth } from '../helpers/auth';
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -52,6 +52,8 @@ const Signup = () => {
 
     return (
         <Base>
+            {(isAuth() && isAuth().role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
+            {(isAuth()) ? (<Redirect to="/user/dashboard" />) : null }
             <ToastContainer />
             <FormWrapper>
                 <FormHeaderText>Join Us!</FormHeaderText>

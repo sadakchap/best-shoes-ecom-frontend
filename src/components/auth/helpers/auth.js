@@ -47,7 +47,7 @@ export const authenticate = (data, next) => {
 export const isAuth = () => {
     if(typeof window !== undefined){
         if(localStorage.getItem("jwt") !== "undefined"){
-            return JSON.parse(localStorage.getItem("user"))
+            return JSON.parse(localStorage.getItem("jwt"))
         }
     }
     return false;

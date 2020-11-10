@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import Base from '../../core/Base';
 import { toast, ToastContainer } from "react-toastify";
-import { authenticate, signin } from '../helpers/auth';
+import { authenticate, isAuth, signin } from '../helpers/auth';
 import { Button, SpinnerWrapper, Spinner } from "../../reuseableComponents/SpinnerButton";
 import { FiCheck } from "react-icons/fi";
 import { StyledForm, InputWrapper, StyledInput, FormWrapper, FormHeaderText } from '../Signup/SignupElements';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 
 const Signin = () => {
@@ -54,6 +54,8 @@ const Signin = () => {
 
     return (
         <Base>
+            {(isAuth() && isAuth().role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
+            {(isAuth()) ? (<Redirect to="/user/dashboard" />) : null }
             <ToastContainer />
             <FormWrapper>
                 <FormHeaderText>Welcome Back!</FormHeaderText>
