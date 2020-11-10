@@ -2,14 +2,24 @@ import React, { useState } from 'react'
 import { MenuWrapper, NavbarWrapper, NavItemLink, NavList, NavListItem, NavLogoLink } from './NavbarElements';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { TiTimes } from 'react-icons/ti'
+import { signout } from '../../auth/helpers/auth';
+import { useHistory } from 'react-router-dom';
+
 
 
 const Navbar = () => {
 
     const [isNavOpen, setIsNavOpen] = useState(false);
-
     const toggleNav = () => setIsNavOpen(!isNavOpen);
+    const history = useHistory();
 
+    const handleSignout = (e) => {
+        e.preventDefault();
+        signout(() => { 
+            history.push('/signin');
+        })
+    }
+    
     return (
         <>
             <NavbarWrapper>
@@ -28,7 +38,7 @@ const Navbar = () => {
                         <NavItemLink to="/signup">sign up</NavItemLink>
                     </NavListItem>
                     <NavListItem>
-                        <NavItemLink to="/signout">sign out</NavItemLink>
+                        <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
                     </NavListItem>
                 </NavList>
                 <MenuWrapper>

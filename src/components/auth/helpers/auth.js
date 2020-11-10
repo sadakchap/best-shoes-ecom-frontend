@@ -52,3 +52,14 @@ export const isAuth = () => {
     }
     return false;
 };
+
+export const signout = next => {
+    if(typeof window !== undefined){
+        localStorage.removeItem("jwt");
+        next();
+        return fetch(`${API}/signout`, {
+            method: 'GET'
+        }).then(res => console.log('signout success'))
+        .catch(err => console.log(err));
+    }
+};
