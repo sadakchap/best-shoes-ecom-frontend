@@ -53,7 +53,7 @@ const Signup = () => {
 
     return (
         <Base>
-            {(isAuth() && isAuth().role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
+            {(isAuth() && isAuth().user.role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
             {(isAuth()) ? (<Redirect to="/user/dashboard" />) : null }
             <ToastContainer />
             <FormWrapper>

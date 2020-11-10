@@ -40,7 +40,11 @@ const Signin = () => {
                 });
                 toast.success('Sign in success😎!');
                 return setTimeout(() => {
-                    history.push('/');
+                    if(isAuth() && isAuth().user.role === 1){
+                        history.push('/admin/dashboard');
+                    }else{
+                        history.push('/user/dashboard');
+                    }
                 }, 2000);
             })
         }).catch(err => {
@@ -54,7 +58,7 @@ const Signin = () => {
 
     return (
         <Base>
-            {(isAuth() && isAuth().role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
+            {(isAuth() && isAuth().user.role === 1) ? (<Redirect to="/admin/dashboard" />) : null }
             {(isAuth()) ? (<Redirect to="/user/dashboard" />) : null }
             <ToastContainer />
             <FormWrapper>
