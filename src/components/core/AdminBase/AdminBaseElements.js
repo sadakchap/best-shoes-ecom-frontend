@@ -4,7 +4,7 @@ import { lighten } from 'polished';
 
 export const AdminWrapper = styled.div`
     width: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
 
@@ -65,9 +65,10 @@ export const AdminPanelLink = styled(Link)`
 
 export const AdminRightPanel = styled.div`
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     background: ${lighten(0.7, '#021C3C')};
     padding: 2em 3em;
+    overflow-y: scroll;
 `;
 
 export const AdminHeaderText = styled.h4`
