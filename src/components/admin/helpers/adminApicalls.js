@@ -6,3 +6,14 @@ export const getCategories = () => {
     }).then(res => res.json())
     .catch(err => console.log(err));
 };
+
+export const addProduct = (userId, token, product) => {
+    return fetch(`${API}/product/create/${userId}`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: product
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};

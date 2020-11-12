@@ -5,7 +5,7 @@ export const AdminFormWrapper = styled.div`
     height: 100%;
 `;
 
-export const AdminForm = styled.div`
+export const AdminForm = styled.form`
     display: flex;
     /* width: 80%; */
     padding: 1em 3em;
