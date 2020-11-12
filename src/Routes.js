@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CreateCategory from './components/admin/CreateCategory';
 import CreateProduct from './components/admin/CreateProduct';
 import ConfirmEmail from './components/auth/ConfirmEmail';
 import Signin from './components/auth/Signin';
@@ -21,6 +22,7 @@ const Routes = () => {
                 <PrivateRoute path="/user/dashboard" component={UserDashboard} exact />
                 <AdminRoute path="/admin/dashboard" component={AdminDashboard} exact />
                 <AdminRoute path="/admin/create/products" component={CreateProduct} exact />
+                <AdminRoute path="/admin/create/categories" component={CreateCategory} exact />
             </Switch>
         </Router>
     )

@@ -48,6 +48,7 @@ const CreateProduct = () => {
         setValues({ ...values, isLoading: true });
         addProduct(user._id, token, formData).then(data => {
             if(data.error){
+                setValues({ ...values, isLoading: false });
                 return toast.error(data.error);
             }
             toast.success('New Product created!');
