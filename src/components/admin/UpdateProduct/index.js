@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { InputWrapper, StyledInput } from '../../auth/Signup/SignupElements';
 import AdminBase from '../../core/AdminBase';
 import { SpinnerWrapper, Button, Spinner } from '../../reuseableComponents/SpinnerButton';
-import { addProduct, getCategories } from '../helpers/adminApicalls';
-import { AdminForm, AdminFormWrapper, FormTextArea, InputFormGroup, InputSelect } from './AdminForm';
+import { addProduct, editProduct, getCategories, getProduct } from '../helpers/adminApicalls';
+import { AdminForm, AdminFormWrapper, FormTextArea, InputFormGroup, InputSelect } from '../CreateProduct/AdminForm';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { isAuth } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
 
-const CreateProduct = () => {
+const UpdateProduct = ({ match }) => {
 
-    const { user, token } = isAuth();
+    const productId = match.params.productId;
+    const { user: { _id: userId }, token } = isAuth();
     const [categories, setCategories] = useState([]);
     const [values, setValues] = useState({
         name: '',
@@ -25,7 +26,8 @@ const CreateProduct = () => {
         formData: null
     });
     const history = useHistory();
-    useEffect(() => {
+
+    const preloadCategories = () => {
         getCategories().then(data => {
             console.log(data);
             setCategories(data);
@@ -33,25 +35,49 @@ const CreateProduct = () => {
         }).catch(err => {
             toast.error('Sorry, something went wrong. Please try again later!')
         });
+    }
+
+    const loadProductDetails = (productId) => {
+        getProduct(productId).then(data => {
+            if(data.error){
+                return toast.error(data.error)
+            }
+            setValues({ 
+                ...values,
+                name: data.name,
+                desc: data.desc,
+                price: data.price,
+                stock: data.stock,
+                category: data.category,
+                formData: new FormData() 
+            });
+        }).catch(err => {
+            return toast.error('Sorry, something went wrong. Please try again later!')
+        })
+    }
+
+    useEffect(() => {
+        preloadCategories();
+        loadProductDetails(productId);
         // eslint-disable-next-line
     }, [])
 
     const handleSubmit = e => {
         e.preventDefault();
         console.log('submitting form');
-        if(!name || !desc || !price || !stock || !category){
-            return toast.error('All fields are required!')
-        }
+
         if(price < 1 && stock < 0){
             return toast.error('Price & Stock can not be negative!')
         }
+
         setValues({ ...values, isLoading: true });
-        addProduct(user._id, token, formData).then(data => {
+        
+        editProduct(userId, token, productId, formData).then(data => {
             if(data.error){
                 setValues({ ...values, isLoading: false });
                 return toast.error(data.error);
             }
-            toast.success('New Product created!');
+            toast.success(`"${name}" updated successfully!`);
             setValues({
                 ...values,
                 name: '',
@@ -91,7 +117,7 @@ const CreateProduct = () => {
     return (
         <>
             <ToastContainer />    
-            <AdminBase title="Add new products" desc="you can add info about new stock here!">
+            <AdminBase title="Update Product Details" desc="Here, you can easily update product details!">
                 <AdminFormWrapper>
                     <AdminForm onSubmit={handleSubmit}>
                         <InputWrapper>
@@ -115,12 +141,12 @@ const CreateProduct = () => {
                             <InputSelect name="category" onChange={handleChange("category")}>
                                 <option value="">Select Category</option>
                                 {categories && categories.map((cate, idx) => (
-                                    <option key={idx} value={cate._id}>{cate.name}</option>
+                                    <option key={idx} value={cate._id} selected={category === cate._id ? "selected" : null} >{cate.name}</option>
                                 ))}
                             </InputSelect>
                         </InputFormGroup>
                         <Button type="submit" disabled={isLoading || isComplete}>
-                            {!isComplete && "Add Product"}
+                            {!isComplete && "Save Product"}
                             {isComplete && (
                                 <>
                                     <FiCheck />
@@ -138,4 +164,4 @@ const CreateProduct = () => {
     )
 }
 
-export default CreateProduct
+export default UpdateProduct
