@@ -2,6 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { CgShoppingCart } from 'react-icons/cg'
 
+const RemoveFromCart = styled.button`
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #ffba08;
+    background: transparent;
+    background: -webkit-linear-gradient(45deg, #ffba08, #fb6455);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+`;
+
 const AddToCart = styled.button`
     width: 100%;
     padding: 10px 15px;
@@ -17,10 +35,16 @@ const AddToCart = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 500ms ease-in-out;
+
+    &:hover{
+
+    }
 `;
 
 const CardFooter = styled.div`
     width: 100%;
+    padding-top: 10px;
 `;
 
 const ProductPrice = styled.span`
@@ -96,7 +120,14 @@ const ProductCardWrapper = styled.div`
     }
 `;
 
-const UserProductCard = ({ product }) => {
+const UserProductCard = ({ product, addToCart = true, removeFromCart = false }) => {
+    const showAddToCart = () => (
+        addToCart && (<AddToCart> <CgShoppingCart size="1.3rem" /> Add to Cart</AddToCart>)
+    );
+
+    const showRemoveFromCart = () => (
+        removeFromCart && (<RemoveFromCart> Remove from Cart</RemoveFromCart>)
+    )
     return (
         <ProductCardWrapper>
             <ImgWrapper>
@@ -108,7 +139,8 @@ const UserProductCard = ({ product }) => {
                 <ProductDesc>{product.desc.substring(0, 50) + ' ...'}</ProductDesc>
             </CardBody>
             <CardFooter>
-                <AddToCart> <CgShoppingCart size="1.3rem" style={{ marginRight: '10px'}} /> Add to Cart</AddToCart>
+                {showAddToCart()}
+                {showRemoveFromCart()}
             </CardFooter>
 
         </ProductCardWrapper>
