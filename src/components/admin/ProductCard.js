@@ -4,6 +4,8 @@ import { lighten } from 'polished';
 import { API } from '../../backend';
 import { Link } from 'react-router-dom';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import { removeProduct } from './helpers/adminApicalls';
+import { isAuth } from '../auth/helpers/auth';
 
 const CardActionLink = styled(Link)`
     display: flex;
@@ -70,14 +72,14 @@ const CardBody = styled.div`
 const CardImage = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 `;
 
 const Card = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #d3e3eb;
     border-radius: 25px;
     overflow: hidden;
     box-shadow: 0 0 30px rgba(0, 0, 0, .2);
@@ -93,21 +95,36 @@ const Card = styled.div`
 `;
 
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setReload = f => f, reload=undefined, toast=f => f }) => {
+
+    const { user: {_id: userId }, token } = isAuth();
     const imageURL = product.photo_url ? product.photo_url : `${API}product/photo/${product._id}`;
-    const productDesc = product.desc.length > 101 ? product.desc.substring(0, 100) + ' ...' : product.desc
+    const productDesc = product.desc.length > 101 ? product.desc.substring(0, 100) + ' ...' : product.desc;
+
+    const handleClick = e => {
+        e.preventDefault();
+        removeProduct(userId, token, product._id).then(data => {
+            return toast.success(data.message);
+        }).catch(err => {
+            return toast.success(err.message);
+        });
+        setTimeout(() => {
+            setReload(!reload);
+        }, 2000);
+    }
+
     return (
         <Card>
             <CardImage src={imageURL} alt="" />
             <CardBody>
-                <ProductName>{product.name}</ProductName>
+                <ProductName style={{color: '#000'}}>{product.name}</ProductName>
             </CardBody>
             <CardFooter>
                 <ProductName style={{textAlign: "center", visibility: "visible"}}>{product.name}</ProductName>
                 <ProductDesc>{productDesc}</ProductDesc>
                 <CardActions>
                     <CardActionLink to={`/admin/products/edit/${product._id}`} ><AiFillEdit size="1rem" />Edit</CardActionLink>
-                    <CardActionLink to={`/admin/products/delete/${product._id}`} ><AiFillDelete size="1rem" />Delete</CardActionLink>
+                    <CardActionLink to={`/admin/products/delete/${product._id}`} onClick={handleClick} ><AiFillDelete size="1rem" />Delete</CardActionLink>
                 </CardActions>
             </CardFooter>
         </Card>
