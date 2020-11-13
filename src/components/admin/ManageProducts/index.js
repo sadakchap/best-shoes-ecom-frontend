@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminBase from '../../core/AdminBase'
 import { getProducts } from '../helpers/adminApicalls';
-import ProductCard from '../ProductCard';
+import ProductCard from '../AdminProductCard';
 import { Wrapper } from './ManageElements';
 import { toast, ToastContainer } from "react-toastify";
 

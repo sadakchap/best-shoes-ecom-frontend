@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { InputWrapper, StyledInput } from '../../auth/Signup/SignupElements';
 import AdminBase from '../../core/AdminBase';
 import { SpinnerWrapper, Button, Spinner } from '../../reuseableComponents/SpinnerButton';
-import { addProduct, editProduct, getCategories, getProduct } from '../helpers/adminApicalls';
+import { editProduct, getCategories, getProduct } from '../helpers/adminApicalls';
 import { AdminForm, AdminFormWrapper, FormTextArea, InputFormGroup, InputSelect } from '../CreateProduct/AdminForm';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';

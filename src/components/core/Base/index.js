@@ -7,8 +7,8 @@ const Base = ({ title, description, children }) => {
         <>
             <Container>
                 <Navbar />
-                {children}
             </Container>
+            {children}
         </>
     )
 }
