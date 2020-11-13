@@ -8,6 +8,7 @@ export const NavbarWrapper = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 999;
 `;
 
 export const NavLogoLink = styled(Link)`
@@ -27,6 +28,7 @@ export const NavList = styled.ul`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
 
     @media screen and (max-width: 768px){
         padding-top: 1rem;
