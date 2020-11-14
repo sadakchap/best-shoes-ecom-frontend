@@ -3,9 +3,13 @@ import styled from 'styled-components';
 export const CartPageWrapper = styled.div`
     display: flex;
     margin: 0 auto;
-    width: 95%;
+    width: 90%;
     padding: 2em;
     gap: 1.5em;
+
+    @media screen and (max-width: 786px){
+        flex-direction: column;
+    }
 `;
 
 export const CartLeftPanel = styled.div`
@@ -13,6 +17,7 @@ export const CartLeftPanel = styled.div`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    background: #fbfbfb;
 `;
 
 export const CartRightPanel = styled.div`
@@ -23,6 +28,7 @@ export const PriceTableWrapper = styled.div`
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    background: #fbfbfb;
 `;
 
 export const CartListHeader = styled.h2`
@@ -54,6 +60,10 @@ export const ItemImgWrapper = styled.div`
     height: 150px;
     background-color: #e7e7e7;
     border-radius: 10px;
+    @media screen and (max-width: 467px){
+        width: 100px;
+        height: 100px;
+    }
 `;
 
 export const ItemImg = styled.img`
@@ -73,6 +83,9 @@ export const ItemName = styled.h2`
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
     font-size: 1.3rem;
+    @media screen and (max-width: 467px){
+        font-size: 1rem;
+    }
 `;
 
 export const ItemCategory = styled.p`
@@ -93,6 +106,9 @@ export const ItemPrice = styled.p`
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1rem;
+    @media screen and (max-width: 467px){
+        margin-top: 0.5em;
+    }
 `;
 
 export const RemoveButton = styled.div`
@@ -102,7 +118,9 @@ export const RemoveButton = styled.div`
     text-align: left;
     cursor: pointer;
     font-weight: 600;
-    
+     @media screen and (max-width: 467px){
+        font-size: 0.8rem;
+    }
 `;
 
 export const CartListFooter = styled.div`
@@ -112,13 +130,17 @@ export const CartListFooter = styled.div`
     justify-content: space-between;
     padding: 0.5em 1em;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    @media screen and (max-width: 900px){
+        flex-direction: column;
+        gap: 0.5em;
+    }
 `;
 
 export const PriceTable = styled.table`
     width: 100%;
     padding: 1em 2em;
     border-collapse:separate; 
-    border-spacing:0 1em; 
+    border-spacing:0 1em;
 
     & tr{
         margin: 1rem auto;
@@ -136,12 +158,13 @@ export const PriceTable = styled.table`
 `;
 
 export const HelpText = styled.p`
+    margin-top: 2em;
     width: 100%;
-    padding: 1em 2em;
+    padding: 1em 3em;
     font-weight: 900;
-    color: #777;
-    font-size: 0.8rem;
+    color: #c0c0c0;
+    font-size: 0.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;

@@ -4,7 +4,7 @@ import { PrimaryButton, SecondaryButton } from '../../reuseableComponents/Button
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import Base from '../Base';
 import { getTotalAmount, loadCart, removeItemFromCart } from '../helpers/cartHelper';
-import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';;
+import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';import { isAuth } from '../../auth/helpers/auth';
 
 
 const Cart = () => {
@@ -49,7 +49,6 @@ const Cart = () => {
                     <Link to="/">
                         <SecondaryButton width="220px">Continue Shopping</SecondaryButton>
                     </Link>
-                    <PrimaryButton width="220px">Proceed for Payment</PrimaryButton>
                 </CartListFooter>
 
             </>
@@ -76,7 +75,16 @@ const Cart = () => {
                         </tr>
                     </tbody>
                 </PriceTable>
-                <HelpText><AiFillSafetyCertificate size="4rem" /> Safe and Secure Payments. Easy returns. 100% Authenticate products.</HelpText>
+                <div style={{padding: "0.5em 2em"}}>
+                    {isAuth() ? (
+                        <PrimaryButton>Pay with Patym</PrimaryButton>
+                    ) : (
+                        <Link to="/signin">
+                            <PrimaryButton>Sign In</PrimaryButton>
+                        </Link>
+                    )}
+                </div>
+                <HelpText><AiFillSafetyCertificate size="2rem" style={{marginRight: "0.5em"}} /> Safe and Secure Payments. Easy returns. 100% Authenticate products.</HelpText>
             </PriceTableWrapper>
         </CartRightPanel>
     );
@@ -84,7 +92,7 @@ const Cart = () => {
     return (
         <Base>
             <CartPageWrapper>
-                { cartItems.length && (
+                { cartItems && (
                     <>
                         {leftPanel()}
                         {rightPanel()}

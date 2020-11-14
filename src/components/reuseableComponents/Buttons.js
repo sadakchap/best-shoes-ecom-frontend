@@ -32,6 +32,7 @@ export const SecondaryButton = styled.button`
     border: 2px solid #ffba08;
     background: transparent;
     background: -webkit-linear-gradient(45deg, #ffba08, #fb6455);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `;
