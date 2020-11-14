@@ -1,46 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CgShoppingCart } from 'react-icons/cg'
-
-const RemoveFromCart = styled.button`
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    border: 2px solid #ffba08;
-    background: transparent;
-    background: -webkit-linear-gradient(45deg, #ffba08, #fb6455);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-`;
-
-const AddToCart = styled.button`
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(45deg, #ffba08, #fb6455);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 500ms ease-in-out;
-
-    &:hover{
-
-    }
-`;
+import { CgShoppingCart } from 'react-icons/cg';
+import { addItemToCart, itemInCart, removeItemFromCart } from './helpers/cartHelper';
+import { useHistory } from 'react-router-dom';
+import { PrimaryButton, SecondaryButton } from '../reuseableComponents/Buttons';
 
 const CardFooter = styled.div`
     width: 100%;
@@ -57,7 +20,8 @@ const ProductPrice = styled.span`
     bottom: 2%;
     right: 5%;
     transition: 400ms ease-in-out;
-`
+`;
+
 const ProductDesc = styled.p`
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
@@ -120,14 +84,25 @@ const ProductCardWrapper = styled.div`
     }
 `;
 
-const UserProductCard = ({ product, addToCart = true, removeFromCart = false }) => {
+const UserProductCard = ({ product, setReload = f=>f, reload=undefined }) => {
+    
+    const productStatus = itemInCart(product._id);
+    const history = useHistory();
+
     const showAddToCart = () => (
-        addToCart && (<AddToCart> <CgShoppingCart size="1.3rem" /> Add to Cart</AddToCart>)
+        !productStatus && (<PrimaryButton onClick={() => {
+            addItemToCart(product);
+            history.push('/cart');
+        }}> <CgShoppingCart size="1.3rem" /> Add to Cart</PrimaryButton>)
     );
 
     const showRemoveFromCart = () => (
-        removeFromCart && (<RemoveFromCart> Remove from Cart</RemoveFromCart>)
-    )
+        productStatus && (<SecondaryButton onClick={() => {
+            removeItemFromCart(product);
+            setReload(!reload)
+        }}> Remove from Cart</SecondaryButton>)
+    );
+    
     return (
         <ProductCardWrapper>
             <ImgWrapper>
@@ -136,7 +111,7 @@ const UserProductCard = ({ product, addToCart = true, removeFromCart = false }) 
             </ImgWrapper>
             <CardBody>
                 <ProductTitle>{product.name}</ProductTitle>
-                <ProductDesc>{product.desc.substring(0, 50) + ' ...'}</ProductDesc>
+                <ProductDesc>{product.desc.substring(0, 70) + ' ...'}</ProductDesc>
             </CardBody>
             <CardFooter>
                 {showAddToCart()}

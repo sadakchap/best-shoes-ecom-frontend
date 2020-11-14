@@ -23,7 +23,7 @@ const Navbar = () => {
     return (
         <>
             <NavbarWrapper>
-                <NavLogoLink to="/" >Logo</NavLogoLink>
+                <NavLogoLink to="/" >Shoppy</NavLogoLink>
                 <NavList isOpen={isNavOpen}>
                     <NavListItem>
                         <NavItemLink to="/">Home</NavItemLink>

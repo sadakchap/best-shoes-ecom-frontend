@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 const Home = () => {
 
     const [products, setProducts] = useState([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getProducts().then(data => {
@@ -24,12 +25,13 @@ const Home = () => {
 
     return (
         <Base>
+            <ToastContainer />
             {/* <HeroSection /> */}
 
             <ProductCardsWrapper>
         
                 {products && products.map((product, idx) => (
-                    <UserProductCard product={product} key={idx} />
+                    <UserProductCard product={product} key={idx} setReload={setReload} reload={reload} />
                 ))}
             </ProductCardsWrapper>
         </Base>
