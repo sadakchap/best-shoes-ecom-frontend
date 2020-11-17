@@ -52,4 +52,10 @@ export const getTotalAmount = () => {
         totalAmount += parseInt(item.price);
     }
     return totalAmount;
-}
+};
+
+export const emptyCart = () => {
+    if(typeof window !== undefined){
+        return localStorage.removeItem('cart');
+    }
+};

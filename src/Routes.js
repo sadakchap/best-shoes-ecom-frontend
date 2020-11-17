@@ -9,6 +9,7 @@ import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Cart from './components/core/Cart';
 import Home from './components/core/Home';
+import PaymentCallback from './components/PaymentCallback';
 import AdminRoute from './components/protectedRoutes/AdminRoute';
 import PrivateRoute from './components/protectedRoutes/PrivateRoute';
 import AdminDashboard from './components/user/AdminDashboard';
@@ -29,6 +30,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/products/edit/:productId" component={UpdateProduct} exact />
                 <AdminRoute path="/admin/create/categories" component={CreateCategory} exact />
                 <AdminRoute path="/admin/manage/products" component={ManageProducts} exact />
+                <Route path="/payment/callback/:data" component={PaymentCallback} exact />
             </Switch>
         </Router>
     )
