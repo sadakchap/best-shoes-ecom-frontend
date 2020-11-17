@@ -9,6 +9,7 @@ export const CartPageWrapper = styled.div`
 
     @media screen and (max-width: 786px){
         flex-direction: column;
+        padding: 1em;
     }
 `;
 
@@ -141,11 +142,12 @@ export const PriceTable = styled.table`
     padding: 1em 2em;
     border-collapse:separate; 
     border-spacing:0 1em;
+    word-break: break-word;
 
     & tr{
         margin: 1rem auto;
     }
-    & tr:last-child td{
+    & tr.amount td{
         border-top: 1px dashed #777;
         border-bottom: 1px dashed #777;
         font-weight: 600;
@@ -154,6 +156,10 @@ export const PriceTable = styled.table`
     }
     & td:nth-child(2){
         text-align: right;
+    }
+    @media screen and (max-width: 768px){
+        font-size: 0.7rem !important;
+        padding: 1em;
     }
 `;
 
