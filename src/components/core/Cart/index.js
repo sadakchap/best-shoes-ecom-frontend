@@ -4,7 +4,9 @@ import { PrimaryButton, SecondaryButton } from '../../reuseableComponents/Button
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import Base from '../Base';
 import { getTotalAmount, loadCart, removeItemFromCart } from '../helpers/cartHelper';
-import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';import { isAuth } from '../../auth/helpers/auth';
+import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';
+import { isAuth } from '../../auth/helpers/auth';
+import PaytmCheckout from '../PaytmCheckout';
 
 
 const Cart = () => {
@@ -53,7 +55,7 @@ const Cart = () => {
 
             </>
         </CartLeftPanel>
-    )
+    );
 
     const rightPanel = () => (
         <CartRightPanel>
@@ -69,15 +71,15 @@ const Cart = () => {
                             <td>Delivery Charges</td>
                             <td style={{ textAlign: 'right'}}>{totalAmount > 100 ? (<span style={{ color: "#45e545", fontWeight: "600" }}>FREE</span>) : '$ 20'}</td>
                         </tr>
-                        <tr>
+                        <tr className="amount">
                             <td>Total Amount</td>
-                            <td style={{ textAlign: 'right'}}>$ {totalAmount > 100 ? totalAmount: `$ ${totalAmount+20}`}</td>
+                            <td style={{ textAlign: 'right'}}>$ {totalAmount > 100 ? totalAmount: ` ${totalAmount+20}`}</td>
                         </tr>
                     </tbody>
                 </PriceTable>
                 <div style={{padding: "0.5em 2em"}}>
                     {isAuth() ? (
-                        <PrimaryButton>Pay with Patym</PrimaryButton>
+                        <PaytmCheckout />
                     ) : (
                         <Link to="/signin">
                             <PrimaryButton>Sign In</PrimaryButton>
