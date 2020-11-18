@@ -7,25 +7,34 @@ export const AdminWrapper = styled.div`
     height: 100vh;
     display: flex;
     justify-content: center;
-
-    & .col-left{
-        flex: 0.2;
-        background-color: '#021C3C';
-    }
-
-    & .col-right{
-        flex: 0.8;
-    }
-
     @media screen and (max-width: 768px){
-        & .col-left{
-            flex: 0.4;
-            background-color: '#021C3C';
-        }
+        display: block;
+    }
+`;
 
-        & .col-right{
-            flex: 0.6;
-        }
+export const LeftColumn = styled.div`
+    position: relative;
+    flex: 0.2;
+    background-color: '#021C3C';
+    z-index: 999;
+    
+    @media screen and (max-width: 768px){
+        position: absolute;
+        height: 100vh;
+        width: 300px;
+        transition: 300ms ease-in-out;
+        transform: ${({isOpen}) => isOpen && "translateX(-90%)"}
+    }
+`;
+
+export const RightColumn = styled.div`
+    position: relative;
+    flex: 0.8;
+    min-height: 100vh;
+    @media screen and (max-width: 768px){
+        left: 30px;
+        width: calc(100% - 30px);
+        height: 100vh;
     }
 `;
 
@@ -38,12 +47,14 @@ export const AdminLeftPanel = styled.ul`
     height: 100%;
     padding: 1.5rem;
     background-color: #021C3C;
+    z-index: 999;
 
     & li{
         width: 100%;
         list-style: none;
         border-bottom: 1px solid rgba(0,0,0, .5);
     }
+
 `;
 
 export const AdminPanelLink = styled(Link)`
@@ -66,9 +77,13 @@ export const AdminPanelLink = styled(Link)`
 export const AdminRightPanel = styled.div`
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     background: ${lighten(0.7, '#021C3C')};
     padding: 2em 3em;
     overflow-y: auto;
+    @media screen and (max-width: 500px){
+        padding: 2em 1em;
+    }
 `;
 
 export const AdminHeaderText = styled.h4`
@@ -82,9 +97,34 @@ export const AdminHeadingP = styled.p`
     font-weight: 400;
     font-size: 0.8rem;
 `;
+
 export const AdminHeaderContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+`;
+
+export const Icon = styled.div`
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    color: white;
+    cursor: pointer;
+`;
+
+export const HomeLink = styled(Link)`
+    width: 100px;
+    height: 40px;
+
+    @media screen and (max-width: 500px){
+        width: 60px;
+        height: 30px;
+        position: absolute;
+        top: 1%; right: 1%;
+        & button {
+            font-size: 0.7rem !important;
+        }
+        z-index: 998;
+    }
 `;

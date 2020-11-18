@@ -6,4 +6,5 @@ export const Wrapper = styled.div`
     grid-auto-rows: 250px;
     gap: 1em;
     margin: 2em auto;
+    justify-content: center;
 `;

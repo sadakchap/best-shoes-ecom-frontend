@@ -1,12 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { PrimaryButton } from '../../reuseableComponents/Buttons';
-import { AdminHeaderText, AdminLeftPanel, AdminPanelLink, AdminRightPanel, AdminWrapper,AdminHeadingP, AdminHeaderContainer } from './AdminBaseElements';
+import { 
+    AdminHeaderText, 
+    LeftColumn,
+    AdminLeftPanel, 
+    AdminPanelLink, 
+    AdminRightPanel, 
+    AdminWrapper,
+    AdminHeadingP, 
+    AdminHeaderContainer, 
+    RightColumn, 
+    Icon,
+    HomeLink
+} from './AdminBaseElements';
+import { RiArrowLeftSLine } from 'react-icons/ri'
 
 const AdminBase = ({ title, desc, children }) => {
 
+    const [sideNavOpen, setSideNavOpen] = useState(false);
+
     const leftPanel = () => (
         <AdminLeftPanel>
+            <li>
+                <AdminPanelLink to="/admin/dashboard"> Dashboard </AdminPanelLink>
+            </li>
             <li>
                 <AdminPanelLink to="/admin/create/products"> Create Products </AdminPanelLink>
             </li>
@@ -22,6 +39,9 @@ const AdminBase = ({ title, desc, children }) => {
             <li>
                 <AdminPanelLink to="/admin/manage/orders"> Manage Orders </AdminPanelLink>
             </li>
+            <Icon>
+                <RiArrowLeftSLine size="2rem" onClick={() => setSideNavOpen(!sideNavOpen)} />
+            </Icon>
         </AdminLeftPanel>
     );
 
@@ -32,9 +52,9 @@ const AdminBase = ({ title, desc, children }) => {
                     <AdminHeaderText>{title}</AdminHeaderText>
                     <AdminHeadingP>{desc}</AdminHeadingP>
                 </div>
-                <Link to="/">
-                    <PrimaryButton width="100px" style={{ height: "40px"}}>Home</PrimaryButton>
-                </Link>
+                <HomeLink to="/">
+                    <PrimaryButton>Home</PrimaryButton>
+                </HomeLink>
             </AdminHeaderContainer>
             {children}
         </AdminRightPanel>
@@ -42,12 +62,12 @@ const AdminBase = ({ title, desc, children }) => {
 
     return (
         <AdminWrapper className="row">
-            <div className="col-left">
+            <LeftColumn isOpen={sideNavOpen}>
                 {leftPanel()}
-            </div>
-            <div className="col-right">
+            </LeftColumn>
+            <RightColumn>
                 {rightPanel()}
-            </div>
+            </RightColumn>
         </AdminWrapper>
     )
 }

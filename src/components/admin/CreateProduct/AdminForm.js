@@ -12,6 +12,9 @@ export const AdminForm = styled.form`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @media screen and (max-width: 500px){
+        padding: 1em 0.1em;
+    }
 `;
 
 export const FormTextArea = styled.textarea`
