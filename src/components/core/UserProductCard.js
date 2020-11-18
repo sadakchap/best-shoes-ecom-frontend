@@ -107,7 +107,7 @@ const UserProductCard = ({ product, setReload = f=>f, reload=undefined }) => {
         <ProductCardWrapper>
             <ImgWrapper>
                 <ProductImg src={product.photo_url} />
-                <ProductPrice>$ {product.price}</ProductPrice>
+                <ProductPrice>₹ {product.price}</ProductPrice>
             </ImgWrapper>
             <CardBody>
                 <ProductTitle>{product.name}</ProductTitle>

@@ -37,7 +37,7 @@ const Cart = () => {
                             <ItemDetail>
                                 <ItemName>{item.name}</ItemName>
                                 <ItemCategory>Category: <span>{item.category.name}</span></ItemCategory>
-                                <ItemPrice>$ {item.price}</ItemPrice> 
+                                <ItemPrice>₹ {item.price}</ItemPrice> 
                                 <RemoveButton onClick={() => {
                                     removeItemFromCart(item);
                                     setReload(!reload);
@@ -65,15 +65,15 @@ const Cart = () => {
                     <tbody>
                         <tr>
                             <td>Price ({cartItems.length} item)</td>
-                            <td style={{ textAlign: 'right'}}>$ {totalAmount}</td>
+                            <td style={{ textAlign: 'right'}}> ₹ {totalAmount}</td>
                         </tr>
                         <tr>
                             <td>Delivery Charges</td>
-                            <td style={{ textAlign: 'right'}}>{totalAmount > 100 ? (<span style={{ color: "#45e545", fontWeight: "600" }}>FREE</span>) : '$ 20'}</td>
+                            <td style={{ textAlign: 'right'}}>{totalAmount > 500 ? (<span style={{ color: "#45e545", fontWeight: "600" }}>FREE</span>) : ' ₹ 20'}</td>
                         </tr>
                         <tr className="amount">
                             <td>Total Amount</td>
-                            <td style={{ textAlign: 'right'}}>$ {totalAmount > 100 ? totalAmount: ` ${totalAmount+20}`}</td>
+                            <td style={{ textAlign: 'right'}}> ₹ {totalAmount > 500 ? totalAmount: ` ${totalAmount+20}`}</td>
                         </tr>
                     </tbody>
                 </PriceTable>
