@@ -75,11 +75,16 @@ export const AdminHeaderText = styled.h4`
     font-size: 1.5rem;
     font-weight: 500;
     font-family: 'Oswald', sans-serif;
-    /* letter-spacing: 1px; */
 `;
 
 export const AdminHeadingP = styled.p`
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 0.8rem;
+`;
+export const AdminHeaderContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;

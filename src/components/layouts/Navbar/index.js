@@ -12,6 +12,7 @@ const Navbar = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const toggleNav = () => setIsNavOpen(!isNavOpen);
     const history = useHistory();
+    const curUser = isAuth();
 
     const handleSignout = (e) => {
         e.preventDefault();
@@ -31,10 +32,17 @@ const Navbar = () => {
                     <NavListItem>
                         <NavItemLink to="/cart">Cart</NavItemLink>
                     </NavListItem>
-                    { isAuth() ? (
-                        <NavListItem>
-                            <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
-                        </NavListItem>
+                    { curUser ? (
+                        <>
+                            {curUser.user.role === 1 && (
+                                <NavListItem>
+                                    <NavItemLink to="/admin/dashboard">A. Dashboard</NavItemLink>
+                                </NavListItem>
+                            )}
+                            <NavListItem>
+                                <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
+                            </NavListItem>
+                        </>
                     ) : (
                         <>
                             <NavListItem>

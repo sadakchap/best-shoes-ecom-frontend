@@ -1,5 +1,7 @@
 import React from 'react';
-import { AdminHeaderText, AdminLeftPanel, AdminPanelLink, AdminRightPanel, AdminWrapper,AdminHeadingP } from './AdminBaseElements';
+import { Link } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
+import { AdminHeaderText, AdminLeftPanel, AdminPanelLink, AdminRightPanel, AdminWrapper,AdminHeadingP, AdminHeaderContainer } from './AdminBaseElements';
 
 const AdminBase = ({ title, desc, children }) => {
 
@@ -25,8 +27,15 @@ const AdminBase = ({ title, desc, children }) => {
 
     const rightPanel = () => (
         <AdminRightPanel>
-            <AdminHeaderText>{title}</AdminHeaderText>
-            <AdminHeadingP>{desc}</AdminHeadingP>
+            <AdminHeaderContainer>
+                <div>
+                    <AdminHeaderText>{title}</AdminHeaderText>
+                    <AdminHeadingP>{desc}</AdminHeadingP>
+                </div>
+                <Link to="/">
+                    <PrimaryButton width="100px" style={{ height: "40px"}}>Home</PrimaryButton>
+                </Link>
+            </AdminHeaderContainer>
             {children}
         </AdminRightPanel>
     )
