@@ -69,3 +69,10 @@ export const editProduct = (userId, token, productId, product) => {
     }).then(res => res.json())
     .catch(err => console.log(err))
 };
+
+export const getAllCategories = () => {
+    return fetch(`${API}/categories`, {
+        method: "GET"
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};

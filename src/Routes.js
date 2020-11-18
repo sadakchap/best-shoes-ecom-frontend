@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CreateCategory from './components/admin/CreateCategory';
 import CreateProduct from './components/admin/CreateProduct';
+import ManageCategory from './components/admin/ManageCategory';
 import ManageProducts from './components/admin/ManageProducts';
 import UpdateProduct from './components/admin/UpdateProduct';
 import ConfirmEmail from './components/auth/ConfirmEmail';
@@ -30,6 +31,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/products/edit/:productId" component={UpdateProduct} exact />
                 <AdminRoute path="/admin/create/categories" component={CreateCategory} exact />
                 <AdminRoute path="/admin/manage/products" component={ManageProducts} exact />
+                <AdminRoute path="/admin/manage/categories" component={ManageCategory} exact />
                 <Route path="/payment/callback/:data" component={PaymentCallback} exact />
             </Switch>
         </Router>
