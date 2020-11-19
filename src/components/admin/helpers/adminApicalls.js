@@ -76,3 +76,25 @@ export const getAllCategories = () => {
     }).then(res => res.json())
     .catch(err => console.log(err))
 };
+
+export const getOrders = (userId, token) => {
+    return fetch(`${API}/order/all/${userId}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};
+
+export const getOrdersGrouped = (userId, token) => {
+    return fetch(`${API}/orders/grouped/data/${userId}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};

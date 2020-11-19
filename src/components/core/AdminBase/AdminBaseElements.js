@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { lighten } from 'polished';
+import { darken } from 'polished';
 
 export const AdminWrapper = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
+    color: #fff;
     @media screen and (max-width: 768px){
         display: block;
     }
@@ -15,7 +16,7 @@ export const AdminWrapper = styled.div`
 export const LeftColumn = styled.div`
     position: relative;
     flex: 0.2;
-    background-color: '#021C3C';
+    background-color: '#01408e';
     z-index: 999;
     
     @media screen and (max-width: 768px){
@@ -46,7 +47,7 @@ export const AdminLeftPanel = styled.ul`
     box-shadow: 0 0 2px rgba(0,0,0,.1);
     height: 100%;
     padding: 1.5rem;
-    background-color: #021C3C;
+    background-color: #01408e;
     z-index: 999;
 
     & li{
@@ -78,7 +79,7 @@ export const AdminRightPanel = styled.div`
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    background: ${lighten(0.7, '#021C3C')};
+    background: ${darken(0.2, '#01408e')};
     padding: 2em 3em;
     overflow-y: auto;
     @media screen and (max-width: 500px){
