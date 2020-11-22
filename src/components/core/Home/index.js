@@ -48,7 +48,7 @@ const Home = () => {
     return (
         <Base>
             <ToastContainer />
-            {/* <HeroSection /> */}
+            <HeroSection />
             <SearchInput searchText={searchText} setSearchText={setSearchText} />
             { !isComplete ? (
                 <>Loading....</>
