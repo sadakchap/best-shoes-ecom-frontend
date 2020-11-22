@@ -82,7 +82,7 @@ const AdminDashboard = () => {
     }).catch(err => {
       console.log(err);
     });
-    // eslint-disable-nextline
+    // eslint-disable-next-line
   }, [])
 
 

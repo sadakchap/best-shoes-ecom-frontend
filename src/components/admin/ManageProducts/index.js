@@ -11,7 +11,6 @@ const ManageProducts = () => {
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        console.log('useEffect executing');
         getProducts().then(data => {
             if(data.error){
                 return toast.error('Unable to fetch products info. Please try again later!')

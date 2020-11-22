@@ -5,8 +5,6 @@ import { TiTimes } from 'react-icons/ti'
 import { isAuth, signout } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
 
-
-
 const Navbar = () => {
 
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -26,9 +24,6 @@ const Navbar = () => {
             <NavbarWrapper>
                 <NavLogoLink to="/" >Shoppy</NavLogoLink>
                 <NavList isOpen={isNavOpen}>
-                    <NavListItem>
-                        <NavItemLink to="/">Home</NavItemLink>
-                    </NavListItem>
                     <NavListItem>
                         <NavItemLink to="/cart">Cart</NavItemLink>
                     </NavListItem>
