@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const HeroSectionWrapper = styled.div`
     margin-bottom: 2em;
     position: relative;
-    padding: 0 5em;
+    padding: 60px 5em;
     width: 100%;
     min-height: 700px;
     background: linear-gradient(297.36deg, #FFFB99 -14.73%, #F7A458 58.41%, #FF8979 103.21%);

@@ -4,6 +4,7 @@ import { BiMenuAltRight } from 'react-icons/bi';
 import { TiTimes } from 'react-icons/ti'
 import { isAuth, signout } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 const Navbar = () => {
 
@@ -41,10 +42,10 @@ const Navbar = () => {
                     ) : (
                         <>
                             <NavListItem>
-                                <NavItemLink to="/signin">signin</NavItemLink>
+                                <NavItemLink to="/signin">Sign in</NavItemLink>
                             </NavListItem>
                             <NavListItem>
-                                <NavItemLink to="/signup">sign up</NavItemLink>
+                                <NavItemLink to="/signup"><PrimaryButton width="100px">Sign Up</PrimaryButton></NavItemLink>
                             </NavListItem>
                         </>
                     )}

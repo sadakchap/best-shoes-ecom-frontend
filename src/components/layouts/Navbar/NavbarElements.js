@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const NavbarWrapper = styled.nav`
     margin: 0 auto;
     width: 100%;
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,7 +61,7 @@ export const NavItemLink = styled(Link)`
     font-size: .9rem;
     font-weight: 400;
     text-decoration: none;
-    text-transform: uppercase;
+    text-transform: capitalize;
     margin: 0 1rem;
     height: 80px;
     display: flex;

@@ -7,7 +7,6 @@ import { PrimaryButton, SecondaryButton } from '../reuseableComponents/Buttons';
 
 const CardFooter = styled.div`
     width: 100%;
-    padding-top: 10px;
 `;
 
 const ProductPrice = styled.span`
@@ -55,21 +54,21 @@ const ImgWrapper = styled.div`
     background: #e7e7e7;
     width: 100%;
     height: 250px;
-    border-radius: 10px;
+    border-radius: 5px;
 `;
 
 const ProductCardWrapper = styled.div`
     position: relative;
     padding: 0.8rem;
     width: 270px;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    border: 2px solid #ffba08;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    border: 1px solid #eaeaea;
     transition: 0.5s ease;
     &:hover{
         ${ProductImg}{
