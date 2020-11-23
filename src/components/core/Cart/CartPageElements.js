@@ -173,3 +173,15 @@ export const HelpText = styled.p`
     justify-content: center;
     align-items: center;
 `;
+
+export const CartContainer = styled.div`
+    width: 90%;
+    height: 400px;
+    text-align: center;
+    margin: 1em auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;

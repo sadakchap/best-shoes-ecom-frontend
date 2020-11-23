@@ -1,6 +1,7 @@
 export const loadCart = () => {
     if(typeof window !== undefined){
-        return JSON.parse(localStorage.getItem('cart'));
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        return cart ? cart : [];
     }
 };
 

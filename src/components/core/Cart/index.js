@@ -4,10 +4,30 @@ import { PrimaryButton, SecondaryButton } from '../../reuseableComponents/Button
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import Base from '../Base';
 import { getTotalAmount, loadCart, removeItemFromCart } from '../helpers/cartHelper';
-import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';
+import { 
+    CartLeftPanel, 
+    PriceTableWrapper, 
+    HelpText,
+    CartPageWrapper, 
+    CartRightPanel, 
+    CartListBody, 
+    RemoveButton, 
+    CartListHeader, 
+    CartItem, 
+    CartListFooter, 
+    ItemDetail, 
+    ItemImg, 
+    ItemImgWrapper, 
+    ItemName, 
+    ItemCategory, 
+    ItemPrice, 
+    PriceTable,
+    CartContainer
+} from './CartPageElements';
 import { isAuth } from '../../auth/helpers/auth';
 import PaytmCheckout from '../PaytmCheckout';
 import { toast, ToastContainer } from 'react-toastify';
+import EmptyCartImg from '../../../assets/img/emptycart.png';
 
 
 const Cart = () => {
@@ -94,13 +114,21 @@ const Cart = () => {
         <Base>
             <ToastContainer />
             <CartPageWrapper>
-                { cartItems ? (
+                { cartItems.length ? (
                     <>
                         {leftPanel()}
                         {rightPanel()}
                     </>
                 ) : (
-                    "Your cart is Empty,"
+                    <CartContainer>
+                        <ItemImgWrapper style={{width: '200px', background: 'transparent'}}>
+                            <ItemImg src={EmptyCartImg} alt="Empty Cart" style={{boxShadow: '0 0 3px rgba(0, 0, 0, .1)'}} />
+                        </ItemImgWrapper>
+                        <p style={{color: '#555', margin: '0.5em auto'}}>Your cart is empty</p>                        
+                        <Link to="/">
+                            <PrimaryButton>Happy Shopping</PrimaryButton>
+                        </Link>
+                    </CartContainer>
                 )}
             </CartPageWrapper>
         </Base>
