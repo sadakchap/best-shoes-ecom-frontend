@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { InputWrapper, StyledInput } from '../../auth/Signup/SignupElements';
 import AdminBase from '../../core/AdminBase';
-import { SpinnerWrapper, Button, Spinner } from '../../reuseableComponents/SpinnerButton';
+import { SpinnerWrapper, Spinner } from '../../reuseableComponents/SpinnerButton';
 import { addProduct, getCategories } from '../helpers/adminApicalls';
 import { AdminForm, AdminFormWrapper, FormTextArea, InputFormGroup, InputSelect } from './AdminForm';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { isAuth } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 const CreateProduct = () => {
 
@@ -119,7 +120,8 @@ const CreateProduct = () => {
                                 ))}
                             </InputSelect>
                         </InputFormGroup>
-                        <Button type="submit" disabled={isLoading || isComplete}>
+                        <br/>
+                        <PrimaryButton type="submit" disabled={isLoading || isComplete}>
                             {!isComplete && "Add Product"}
                             {isComplete && (
                                 <>
@@ -130,7 +132,7 @@ const CreateProduct = () => {
                             <SpinnerWrapper isClicked={isLoading} >
                                 <Spinner />
                             </SpinnerWrapper>
-                        </Button>
+                        </PrimaryButton>
                     </AdminForm>
                 </AdminFormWrapper>
             </AdminBase>

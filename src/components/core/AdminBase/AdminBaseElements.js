@@ -7,7 +7,7 @@ export const AdminWrapper = styled.div`
     height: 100vh;
     display: flex;
     justify-content: center;
-    color: #fff;
+    color: #eee;
     @media screen and (max-width: 768px){
         display: block;
     }

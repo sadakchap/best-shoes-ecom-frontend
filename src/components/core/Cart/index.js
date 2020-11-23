@@ -7,6 +7,7 @@ import { getTotalAmount, loadCart, removeItemFromCart } from '../helpers/cartHel
 import { CartLeftPanel, PriceTableWrapper, HelpText,CartPageWrapper, CartRightPanel, CartListBody, RemoveButton, CartListHeader, CartItem, CartListFooter, ItemDetail, ItemImg, ItemImgWrapper, ItemName, ItemCategory, ItemPrice, PriceTable } from './CartPageElements';
 import { isAuth } from '../../auth/helpers/auth';
 import PaytmCheckout from '../PaytmCheckout';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 const Cart = () => {
@@ -22,8 +23,7 @@ const Cart = () => {
 
     const leftPanel = () => (
         <CartLeftPanel>
-            <>
-                
+            <PriceTableWrapper> 
                 <CartListHeader>
                    My Cart ({cartItems.length})
                 </CartListHeader>
@@ -52,8 +52,7 @@ const Cart = () => {
                         <SecondaryButton width="220px">Continue Shopping</SecondaryButton>
                     </Link>
                 </CartListFooter>
-
-            </>
+            </PriceTableWrapper>
         </CartLeftPanel>
     );
 
@@ -79,10 +78,10 @@ const Cart = () => {
                 </PriceTable>
                 <div style={{padding: "0.5em 2em"}}>
                     {isAuth() ? (
-                        <PaytmCheckout />
+                        <PaytmCheckout toast={toast} />
                     ) : (
                         <Link to="/signin">
-                            <PrimaryButton>Sign In</PrimaryButton>
+                            <PrimaryButton width="100%">Sign In</PrimaryButton>
                         </Link>
                     )}
                 </div>
@@ -93,12 +92,15 @@ const Cart = () => {
 
     return (
         <Base>
+            <ToastContainer />
             <CartPageWrapper>
-                { cartItems && (
+                { cartItems ? (
                     <>
                         {leftPanel()}
                         {rightPanel()}
                     </>
+                ) : (
+                    "Your cart is Empty,"
                 )}
             </CartPageWrapper>
         </Base>

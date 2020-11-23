@@ -15,10 +15,8 @@ export const CartPageWrapper = styled.div`
 
 export const CartLeftPanel = styled.div`
     flex: 0.6;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    background: #fbfbfb;
 `;
 
 export const CartRightPanel = styled.div`
@@ -30,6 +28,7 @@ export const PriceTableWrapper = styled.div`
     border-radius: 10px;
     overflow: hidden;
     background: #fbfbfb;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 export const CartListHeader = styled.h2`
@@ -128,12 +127,12 @@ export const CartListFooter = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 0.5em 1em;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    
     @media screen and (max-width: 900px){
-        flex-direction: column;
-        gap: 0.5em;
+        justify-content: center;
     }
 `;
 

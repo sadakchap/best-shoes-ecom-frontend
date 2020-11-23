@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components';
 import { rgba, darken } from "polished";
 
-const colorPrimary = '#ffba08';
+const colorPrimary = '#FF7E39';
 
 const spin = keyframes`
     100%{ transform: rotate(360deg) }
@@ -26,7 +26,7 @@ export const SpinnerWrapper = styled.span`
     ${({isClicked}) => isClicked && spinnerOpenStyles };
     transition: visibility, opacity;
     transition-duration: 300ms;
-    background: ${darken(0.1, colorPrimary)};
+    background: ${darken(0.2, colorPrimary)};
 `;
 
 export const Spinner = styled.span`

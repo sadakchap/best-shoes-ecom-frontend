@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import AdminBase from '../../core/AdminBase'
 import { AdminFormWrapper, AdminForm } from '../CreateProduct/AdminForm';
 import { InputWrapper, StyledInput } from '../../auth/Signup/SignupElements';
-import { SpinnerWrapper, Spinner, Button } from '../../reuseableComponents/SpinnerButton';
+import { SpinnerWrapper, Spinner } from '../../reuseableComponents/SpinnerButton';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from "react-toastify";
 import { createCategory } from '../helpers/adminApicalls';
 import { isAuth } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 
 const CreateCategory = () => {
@@ -33,7 +34,7 @@ const CreateCategory = () => {
                 setValues({ ...values, isLoading: false });
                 return toast.error(data.error);
             }
-            toast.success(`New category "${data.name}" has been created!`)
+            toast.success(`New category "${data.name}" has been created!`, {autoClose: 1500})
             setValues({ ...values, name: '', isLoading: false, isComplete: true });
             return setTimeout(() => {
                 history.push('/admin/dashboard');
@@ -57,7 +58,8 @@ const CreateCategory = () => {
                     <InputWrapper>
                         <StyledInput placeholder="Name" onChange={handleChange("name")} value={name} />
                     </InputWrapper>
-                    <Button type="submit" disabled={isLoading || isComplete}>
+                    <br/>
+                    <PrimaryButton type="submit" disabled={isLoading || isComplete}>
                         {!isComplete && "Add Category"}
                         {isComplete && (
                             <>
@@ -68,7 +70,7 @@ const CreateCategory = () => {
                         <SpinnerWrapper isClicked={isLoading} >
                             <Spinner />
                         </SpinnerWrapper>
-                    </Button>
+                    </PrimaryButton>
                 </AdminForm>
             </AdminFormWrapper>
         </AdminBase>

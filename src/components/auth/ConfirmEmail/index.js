@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ContainerWrapper, Content, HeaderText, PText, InlineForm } from './ConfirmEmailElements';
-import { Button, Spinner, SpinnerWrapper } from '../../reuseableComponents/SpinnerButton';
+import { Spinner, SpinnerWrapper } from '../../reuseableComponents/SpinnerButton';
 import { FiCheck } from 'react-icons/fi';
 import { ToastContainer, toast } from "react-toastify";
 import { confirmEmail } from '../helpers/auth';
 import { useHistory } from "react-router-dom";
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 const ConfirmEmail = ({ match }) => {
 
@@ -31,10 +32,10 @@ const ConfirmEmail = ({ match }) => {
         }).catch(err => {
             console.log(err);
             if(err?.response?.data?.error) return toast.error(err.response.data.error);
+            setValues({ ...values, isComplete: false });
             return toast.error('Sorry, something went wrong!');
         });
 
-        setValues({ ...values, isComplete: false });
     }
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const ConfirmEmail = ({ match }) => {
                     <HeaderText>Confirm email</HeaderText>
                     <PText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur atque autem ab minima culpa deserunt, sapiente optio vitae doloremque quod magni iure quibusdam a aliquam placeat! Consectetur quos animi repudiandae.</PText>
                     <InlineForm>
-                        <Button type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
+                        <PrimaryButton type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
                             {!isComplete && "Confirm"}
                             {isComplete && (
                                 <>
@@ -64,7 +65,7 @@ const ConfirmEmail = ({ match }) => {
                             <SpinnerWrapper isClicked={isLoading}>
                                 <Spinner />
                             </SpinnerWrapper>
-                        </Button>
+                        </PrimaryButton>
                     </InlineForm>
                 </Content>
             </ContainerWrapper>

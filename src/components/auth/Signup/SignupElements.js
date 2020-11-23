@@ -26,13 +26,19 @@ export const StyledForm = styled.form`
 
 export const InputWrapper = styled.div`
     width: 100%;
-    margin: 1.2em auto;
+    margin: 1em auto;
 `;
 
 export const StyledInput = styled.input`
+    border: none;
+    outline: none;
     width: 100%;
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     height: 40px;
-    padding: 0 1rem;
+    padding: 1rem;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 1.1.rem;
+    color: #4e4e4e;
 `;

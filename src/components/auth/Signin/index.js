@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import Base from '../../core/Base';
 import { toast, ToastContainer } from "react-toastify";
 import { authenticate, isAuth, signin } from '../helpers/auth';
-import { Button, SpinnerWrapper, Spinner } from "../../reuseableComponents/SpinnerButton";
+import { SpinnerWrapper, Spinner } from "../../reuseableComponents/SpinnerButton";
 import { FiCheck } from "react-icons/fi";
 import { StyledForm, InputWrapper, StyledInput, FormWrapper, FormHeaderText } from '../Signup/SignupElements';
 import { Redirect, useHistory } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 
 const Signin = () => {
@@ -49,11 +50,9 @@ const Signin = () => {
             })
         }).catch(err => {
             if(err?.response?.data?.error) return toast.error(err.response.data.error);
+            setValues({ ...values, isComplete: true });
             return toast.error('Sorry, something went wrong!');
-        })
-
-        return setValues({ ...values, isComplete: false });
-
+        });
     }
 
     return (
@@ -70,7 +69,8 @@ const Signin = () => {
                     <InputWrapper>
                         <StyledInput type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                     </InputWrapper>
-                    <Button type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
+                    <br/>
+                    <PrimaryButton width="180px" type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
                         {!isComplete && "Sign in"}
                         {isComplete && (
                             <>
@@ -81,7 +81,7 @@ const Signin = () => {
                         <SpinnerWrapper isClicked={isLoading}>
                             <Spinner />
                         </SpinnerWrapper>
-                    </Button>
+                    </PrimaryButton>
                 </StyledForm>
             </FormWrapper>
         </Base>

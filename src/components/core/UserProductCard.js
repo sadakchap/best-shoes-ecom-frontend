@@ -89,7 +89,7 @@ const UserProductCard = ({ product, setReload = f=>f, reload=undefined }) => {
     const history = useHistory();
 
     const showAddToCart = () => (
-        !productStatus && (<PrimaryButton onClick={() => {
+        !productStatus && (<PrimaryButton width="100%" onClick={() => {
             addItemToCart(product);
             history.push('/cart');
         }}> <CgShoppingCart size="1.3rem" /> Add to Cart</PrimaryButton>)

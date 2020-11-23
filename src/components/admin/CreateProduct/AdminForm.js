@@ -27,6 +27,12 @@ export const FormTextArea = styled.textarea`
     padding: 1rem;
     max-height: 200px;
     letter-spacing: 1px;
+    background: #eee;
+    border-radius: 20px;
+    resize: none;
+    outline: none;
+    font-weight: 600;
+    
 `;
 
 export const InputFormGroup = styled.div`

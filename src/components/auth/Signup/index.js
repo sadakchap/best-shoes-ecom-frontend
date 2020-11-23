@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Base from '../../core/Base';
-import { Button, SpinnerWrapper, Spinner } from '../../reuseableComponents/SpinnerButton';
+import { SpinnerWrapper, Spinner } from '../../reuseableComponents/SpinnerButton';
 import { FormWrapper, StyledForm, InputWrapper, StyledInput, FormHeaderText } from './SignupElements';
 import { FiCheck } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { signup, isAuth } from '../helpers/auth';
 import { Redirect } from 'react-router-dom';
+import { PrimaryButton } from '../../reuseableComponents/Buttons';
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -44,10 +45,10 @@ const Signup = () => {
             return toast.success(data.message);
         }).catch(err => {
             if(err?.response?.data?.error) return toast.error(err.response.data.error);
+            setValues({ ...values, isComplete: false });
             return toast.error('Sorry, something went wrong!');
         });
 
-        return setValues({ ...values, isComplete: false });
 
     }
 
@@ -71,7 +72,8 @@ const Signup = () => {
                     <InputWrapper>
                         <StyledInput type="password" placeholder="Password Confirm" onChange={handleChange("passwordConfirm")} value={passwordConfirm} />
                     </InputWrapper>
-                    <Button type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
+                    <br/>
+                    <PrimaryButton width="180px" type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
                         {!isComplete && "Sign up"}
                         {isComplete && (
                             <>
@@ -82,7 +84,7 @@ const Signup = () => {
                         <SpinnerWrapper isClicked={isLoading}>
                             <Spinner />
                         </SpinnerWrapper>
-                    </Button>
+                    </PrimaryButton>
                 </StyledForm>
             </FormWrapper>
         </Base>
