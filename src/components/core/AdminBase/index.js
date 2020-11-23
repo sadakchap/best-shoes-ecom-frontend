@@ -53,7 +53,7 @@ const AdminBase = ({ title, desc, children }) => {
                     <AdminHeadingP>{desc}</AdminHeadingP>
                 </div>
                 <HomeLink to="/">
-                    <PrimaryButton width="100px">Home</PrimaryButton>
+                    <PrimaryButton width="100%">Home</PrimaryButton>
                 </HomeLink>
             </AdminHeaderContainer>
             {children}

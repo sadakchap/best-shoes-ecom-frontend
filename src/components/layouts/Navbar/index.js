@@ -5,25 +5,38 @@ import { TiTimes } from 'react-icons/ti'
 import { isAuth, signout } from '../../auth/helpers/auth';
 import { useHistory } from 'react-router-dom';
 import { PrimaryButton } from '../../reuseableComponents/Buttons';
+import { GiVileFluid } from 'react-icons/gi';
 
 const Navbar = () => {
 
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const toggleNav = () => setIsNavOpen(!isNavOpen);
+    const [navbar, setNavbar] = useState(false);
     const history = useHistory();
     const curUser = isAuth();
+
+    const toggleNav = () => setIsNavOpen(!isNavOpen);
 
     const handleSignout = (e) => {
         e.preventDefault();
         signout(() => { 
             history.push('/signin');
-        })
+        });
     }
     
+    const changeBackground = () => {
+        if(window.scrollY >= 60){
+            setNavbar(true);
+        }else{
+            setNavbar(false);
+        }
+    }
+
+    window.addEventListener('scroll', changeBackground);
+
     return (
         <>
-            <NavbarWrapper>
-                <NavLogoLink to="/" >Shoppy</NavLogoLink>
+            <NavbarWrapper className={navbar && 'navbar active'}>
+                <NavLogoLink to="/" ><GiVileFluid/> <span>Best shoe</span> </NavLogoLink>
                 <NavList isOpen={isNavOpen}>
                     <NavListItem>
                         <NavItemLink to="/cart">Cart</NavItemLink>

@@ -4,24 +4,36 @@ import styled from 'styled-components';
 export const NavbarWrapper = styled.nav`
     margin: 0 auto;
     width: 100%;
-    height: 60px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 999;
+    background: #fff;
+    margin: 0 auto;
+    padding: 2em;
+    transition: 0.3s ease-in-out;
+    position: sticky;
+    top: 0;
+    left: 0;
 `;
 
 export const NavLogoLink = styled(Link)`
-    height: 80px;
+    height: 100%;
     font-size: 2.5rem;
     text-decoration: none;
-    text-transform: uppercase;
-    color: #ffba08;
+    color: #FF7E39;
     font-weight: 800;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-family: 'Oswald', sans-serif;
+    align-items: center;
+
+    & span{
+        font-family: 'Raleway', sans-serif;
+        text-transform: uppercase;
+        font-size: 2rem;
+        color: #000;
+    }
 `;
 
 export const NavList = styled.ul`
@@ -63,7 +75,7 @@ export const NavItemLink = styled(Link)`
     text-decoration: none;
     text-transform: capitalize;
     margin: 0 1rem;
-    height: 80px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

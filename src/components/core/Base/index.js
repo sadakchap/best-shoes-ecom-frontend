@@ -1,13 +1,10 @@
 import React from 'react'
 import Navbar from '../../layouts/Navbar'
-import { Container } from '../../reuseableComponents/Container'
 
-const Base = ({ title, description, children }) => {
+const Base = ({ children }) => {
     return (
         <>
-            <Container>
-                <Navbar />
-            </Container>
+            <Navbar />
             {children}
         </>
     )
