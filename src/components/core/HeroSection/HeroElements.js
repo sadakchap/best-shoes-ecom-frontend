@@ -16,6 +16,10 @@ export const HeroSectionWrapper = styled.div`
         padding-top: 80px;
     }
 
+    @media screen and (max-width: 500px){
+        padding: 60px 2em;
+    }
+
     &::before{
         content: '';
         position: absolute;
@@ -51,6 +55,10 @@ export const BackgroundDiv = styled.div`
     background-blend-mode: overlay;
     border-radius: 150px;
 
+    @media screen and (max-width: 768px){
+        display: none;
+    }
+
     &::before{
         content: '';
         position: absolute;
@@ -80,6 +88,10 @@ export const HeaderContent = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 768px){
+        width: 100%;
+    }
 `;
 
 export const HeaderContentWrapper = styled.div`
@@ -109,9 +121,14 @@ export const HeaderText = styled.h1`
 
     @media screen and (max-width: 1024px){
         font-size: 3rem;
+        line-height: 4rem;
     }
     @media screen and (max-width: 768px){
         font-size: 2.5rem;
+    }
+    @media screen and (max-width: 500px){
+        font-size: 2.5rem;
+        line-height: 3rem;
     }
 
 `;
@@ -137,6 +154,12 @@ export const HeaderImgWrapper = styled.div`
     width: 50%;
     right: 0;
     z-index: 997;
+    
+    @media screen and (max-width: 768px){
+        display: none;
+        width: 60%;
+        align-self: flex-end;
+    }
 `;
 
 export const HeaderImg = styled.img`
