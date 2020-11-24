@@ -37,7 +37,7 @@ const ManageOrders = () => {
                             <tr>
                                 <th>S.no.</th>
                                 <th>Order Id</th>
-                                <th>Txn Id</th>
+                                <th>Transaction Id</th>
                                 <th>Order Anount</th>
                                 <th>Order Status</th>
                             </tr>
