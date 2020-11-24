@@ -49,6 +49,9 @@ const Navbar = () => {
                                 </NavListItem>
                             )}
                             <NavListItem>
+                                    <NavItemLink to="/user/dashboard">Dashboard</NavItemLink>
+                                </NavListItem>
+                            <NavListItem>
                                 <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
                             </NavListItem>
                         </>
