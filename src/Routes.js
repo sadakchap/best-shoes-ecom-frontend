@@ -4,6 +4,7 @@ import CreateCategory from './components/admin/CreateCategory';
 import CreateProduct from './components/admin/CreateProduct';
 import ManageCategory from './components/admin/ManageCategory';
 import ManageProducts from './components/admin/ManageProducts';
+import UpdateCategory from './components/admin/UpdateCategory';
 import UpdateProduct from './components/admin/UpdateProduct';
 import ConfirmEmail from './components/auth/ConfirmEmail';
 import Signin from './components/auth/Signin';
@@ -29,6 +30,7 @@ const Routes = () => {
                 <AdminRoute path="/admin/dashboard" component={AdminDashboard} exact />
                 <AdminRoute path="/admin/create/products" component={CreateProduct} exact />
                 <AdminRoute path="/admin/products/edit/:productId" component={UpdateProduct} exact />
+                <AdminRoute path="/admin/category/edit/:categoryId" component={UpdateCategory} exact />
                 <AdminRoute path="/admin/create/categories" component={CreateCategory} exact />
                 <AdminRoute path="/admin/manage/products" component={ManageProducts} exact />
                 <AdminRoute path="/admin/manage/categories" component={ManageCategory} exact />

@@ -20,6 +20,13 @@ export const createCategory = (userId, token, category) => {
     .catch(err => console.log(err))
 };
 
+export const getACategory = (categoryId) => {
+    return fetch(`${API}/category/${categoryId}`, {
+        method: 'GET'
+    }).then(res => res.json())
+    .catch(err => console.log(err));
+}
+
 export const updateCategory = (userId, token, category, categoryId) => {
     return fetch(`${API}/category/${userId}/${categoryId}`, {
         method: 'PUT',
