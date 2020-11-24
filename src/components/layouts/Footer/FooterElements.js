@@ -122,7 +122,7 @@ export const FooterLinkList = styled.ul`
             margin-bottom: 16px;
         }
 
-        & li span:nth-child(1){
+        & li span{
             color: #fff;
             font-size: 20px;
             margin-right: 10px;

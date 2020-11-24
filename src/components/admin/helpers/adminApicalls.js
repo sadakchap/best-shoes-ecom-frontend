@@ -20,6 +20,29 @@ export const createCategory = (userId, token, category) => {
     .catch(err => console.log(err))
 };
 
+export const updateCategory = (userId, token, category, categoryId) => {
+    return fetch(`${API}/category/${userId}/${categoryId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(category)
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};
+
+export const removeCategory = (userId, token, categoryId) => {
+    return fetch(`${API}/category/${userId}/${categoryId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(res => res.json())
+    .catch(err => console.log(err))
+};
+
 export const addProduct = (userId, token, product) => {
     return fetch(`${API}/product/create/${userId}`, {
         method: 'POST',
