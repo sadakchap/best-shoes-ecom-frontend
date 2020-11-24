@@ -15,12 +15,14 @@ import Home from './components/core/Home';
 import PaymentCallback from './components/PaymentCallback';
 import AdminRoute from './components/protectedRoutes/AdminRoute';
 import PrivateRoute from './components/protectedRoutes/PrivateRoute';
+import ScrollToTop from './components/ScrollToTop';
 import AdminDashboard from './components/user/AdminDashboard';
 import UserDashboard from './components/user/UserDashboard';
 
 const Routes = () => {
     return (
         <Router>
+            <ScrollToTop />
             <Switch>
                 <Route path="/" component={Home} exact />
                 <Route path="/signup" component={Signup} exact />
