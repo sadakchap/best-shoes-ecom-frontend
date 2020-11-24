@@ -7,7 +7,7 @@ export const CartPageWrapper = styled.div`
     padding: 2em;
     gap: 1.5em;
 
-    @media screen and (max-width: 786px){
+    @media screen and (max-width: 991px){
         flex-direction: column;
         padding: 1em;
     }
@@ -80,8 +80,8 @@ export const ItemDetail = styled.div`
 `;
 
 export const ItemName = styled.h2`
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
     font-size: 1.3rem;
     @media screen and (max-width: 467px){
         font-size: 1rem;
@@ -117,8 +117,11 @@ export const RemoveButton = styled.div`
     border: none;
     text-align: left;
     cursor: pointer;
-    font-weight: 600;
-     @media screen and (max-width: 467px){
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+
+    @media screen and (max-width: 467px){
         font-size: 0.8rem;
     }
 `;
@@ -184,4 +187,9 @@ export const CartContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+`;
+
+export const NoteText = styled.td`
+    color: #999;
+    font-size: 0.8rem;
 `;

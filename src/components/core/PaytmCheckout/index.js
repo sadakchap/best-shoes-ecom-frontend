@@ -18,8 +18,13 @@ const PaytmCheckout = (props) => {
         isComplete: false
     });
 
+    const { setIsModalOpen, isAgree } = props;
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!isAgree){
+            return setIsModalOpen(true);
+        }
         const totalAmount = getTotalAmount();
         setPaytmParam({ ...paytmParam, isLoading: true });
         initiateTransaction(userId, token, totalAmount).then(data => {

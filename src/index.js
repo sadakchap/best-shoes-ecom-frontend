@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Routes from './Routes';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-responsive-modal/styles.css'
 
 ReactDOM.render(
   <React.StrictMode>

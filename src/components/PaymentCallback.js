@@ -56,7 +56,7 @@ const PaymentCallback = ({ match }) => {
             ...data,
             TXNID,
             TXNAMOUNT,
-            STATUS,
+            TXNSTATUS: STATUS,
             TXNDATE,
             isComplete: true
         });
@@ -81,7 +81,7 @@ const PaymentCallback = ({ match }) => {
                 return toast.error('Transaction has been completed, please note details and Contact our support!');
             }
             if(res.message){
-                return toast.info(res.message);
+                return toast.info(res.message + ' Please retrun to Home!');
             }
             // empty cart
             emptyCart();
@@ -97,9 +97,9 @@ const PaymentCallback = ({ match }) => {
 
     const leftPanel = () => (
         <CartLeftPanel>
-            <>
+            <PriceTableWrapper>
                 <CartListHeader>
-                    { isComplete && "Order Placed"}
+                    { isComplete && TXNSTATUS ==='TXN_SUCCESS' ? ("Order Placed") : ("Order Detial") }
                 </CartListHeader>
                 
                 <CartListBody>
@@ -123,7 +123,7 @@ const PaymentCallback = ({ match }) => {
                     </Link>
                 </CartListFooter>
 
-            </>
+            </PriceTableWrapper>
         </CartLeftPanel>
     );
 
@@ -131,12 +131,12 @@ const PaymentCallback = ({ match }) => {
         <CartRightPanel>
             <PriceTableWrapper>
                 <CartListHeader style={{ color: '#777' }}>Transaction Status</CartListHeader>
-                {isComplete && STATUS === 'TXN_SUCCESS' ? (
+                {isComplete && TXNSTATUS === 'TXN_SUCCESS' ? (
                     <>
                         <AiOutlineCheckCircle size="2rem" style={{ textAlign: "center", color: "green", width: "100%" }} />
                         <p style={{ textAlign: "center",  width: "100%"}}>Payment successfull!</p>
                     <PriceTable>
-                        <tbody>
+                        <tbody style={{fontSize: '0.9rem'}}>
                             <tr>
                                 <td>Txn Id</td>
                                 <td style={{ textAlign: 'right'}}>{TXNID}</td>
@@ -161,7 +161,7 @@ const PaymentCallback = ({ match }) => {
     );
 
 
-    const { TXNID, TXNAMOUNT, STATUS, isComplete, TXNDATE } = data;
+    const { TXNID, TXNAMOUNT, TXNSTATUS, isComplete, TXNDATE } = data;
     return (
         <Base>
             <ToastContainer />

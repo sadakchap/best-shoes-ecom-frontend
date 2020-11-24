@@ -22,19 +22,22 @@ import {
     ItemCategory, 
     ItemPrice, 
     PriceTable,
-    CartContainer
+    CartContainer,
+    NoteText
 } from './CartPageElements';
 import { isAuth } from '../../auth/helpers/auth';
 import PaytmCheckout from '../PaytmCheckout';
 import { toast, ToastContainer } from 'react-toastify';
 import EmptyCartImg from '../../../assets/img/emptycart.png';
-
+import { Modal } from 'react-responsive-modal';
 
 const Cart = () => {
     
     const [cartItems, setCartItems] = useState([]);
     const [reload, setReload] = useState(false);
     const [totalAmount, setTotalAmount] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAgree, setIsAgree] = useState(false);
 
     useEffect(() => {
         setCartItems(loadCart());
@@ -88,17 +91,20 @@ const Cart = () => {
                         </tr>
                         <tr>
                             <td>Delivery Charges</td>
-                            <td style={{ textAlign: 'right'}}>{totalAmount > 500 ? (<span style={{ color: "#45e545", fontWeight: "600" }}>FREE</span>) : ' ₹ 20'}</td>
+                            <td style={{ textAlign: 'right'}}>{totalAmount > 500 ? (<span style={{ color: "#45e545", fontWeight: "600" }}>FREE</span>) : ' ₹ 50'}</td>
                         </tr>
                         <tr className="amount">
                             <td>Total Amount</td>
-                            <td style={{ textAlign: 'right'}}> ₹ {totalAmount > 500 ? totalAmount: ` ${totalAmount+20}`}</td>
+                            <td style={{ textAlign: 'right'}}> ₹ {totalAmount > 500 ? totalAmount: ` ${totalAmount+50}`}</td>
+                        </tr>
+                        <tr>
+                            <NoteText>Shop upto ₹500 to get FREE Delivery!</NoteText>
                         </tr>
                     </tbody>
                 </PriceTable>
                 <div style={{padding: "0.5em 2em"}}>
                     {isAuth() ? (
-                        <PaytmCheckout toast={toast} />
+                        <PaytmCheckout toast={toast}setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} isAgree={isAgree} />
                     ) : (
                         <Link to="/signin">
                             <PrimaryButton width="100%">Sign In</PrimaryButton>
@@ -130,6 +136,32 @@ const Cart = () => {
                         </Link>
                     </CartContainer>
                 )}
+
+                <Modal center open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                    <h2 style={{ fontWeight: 500}}>This Payment Gateway is using Test API Keys!!</h2>
+                    <br/>
+                    <small>
+                        This payment gateway is using test api keys, please use only test details.
+                        You can check Patym test credentials 
+                        <a href="https://developer.paytm.com/docs/testing-integration/" target="_blank" rel="noopener noreferrer" >
+                            {" "} here {" "}
+                        </a>. If you want to use Paytm Wallet, Enter these details: 
+                    </small>
+                    
+                    <div>
+                       <strong><small>Mobile No :</small> <small>7777777777</small></strong>
+                    </div>
+                    <div>
+                        <strong><small>OTP :</small> <small>489871</small></strong>
+                    </div>
+                    <small>Please click on Agree and Hit Payment button again!</small>
+                    <div className=""><br/></div>
+                    <PrimaryButton onClick={() => {
+                        setIsAgree(true);
+                        setIsModalOpen(false);
+                    }} >Agree</PrimaryButton>
+                </Modal>
+
             </CartPageWrapper>
         </Base>
     )
