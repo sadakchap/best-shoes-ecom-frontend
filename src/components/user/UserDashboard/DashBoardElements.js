@@ -62,6 +62,7 @@ export const PurchaseInfoDiv = styled.div`
         border-radius: 4px;
         overflow: hidden;
         border: 1px solid rgba(0, 0, 0, .2);
+        margin: 1em auto;
     }
 `;
 

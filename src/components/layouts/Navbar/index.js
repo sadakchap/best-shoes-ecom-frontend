@@ -43,14 +43,14 @@ const Navbar = () => {
                     </NavListItem>
                     { curUser ? (
                         <>
+                            <NavListItem>
+                                <NavItemLink to="/user/dashboard">Dashboard</NavItemLink>
+                            </NavListItem>
                             {curUser.user.role === 1 && (
                                 <NavListItem>
                                     <NavItemLink to="/admin/dashboard">A. Dashboard</NavItemLink>
                                 </NavListItem>
                             )}
-                            <NavListItem>
-                                    <NavItemLink to="/user/dashboard">Dashboard</NavItemLink>
-                                </NavListItem>
                             <NavListItem>
                                 <NavItemLink to="/signout" onClick={handleSignout} >sign out</NavItemLink>
                             </NavListItem>

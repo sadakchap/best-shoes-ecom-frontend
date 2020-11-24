@@ -26,6 +26,7 @@ import {
 import { PrimaryButton } from './reuseableComponents/Buttons';
 import { Link, Redirect } from 'react-router-dom';
 import Base from './core/Base';
+import { GiCancel } from 'react-icons/gi';
 
 
 const PaymentCallback = ({ match }) => {
@@ -154,7 +155,10 @@ const PaymentCallback = ({ match }) => {
                     </>
 
                 ) : (
-                    <p><strong>Transaction Failed. Please try again later.</strong></p>
+                    <p style={{ textAlign: 'center', minHeight: '100px', padding: '1em'}}>
+                        <GiCancel color="red" /> <br/>
+                        <strong>Transaction Failed. Please try again later.</strong>
+                    </p>
                 )}
             </PriceTableWrapper>
         </CartRightPanel>
