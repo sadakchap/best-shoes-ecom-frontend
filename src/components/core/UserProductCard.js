@@ -11,7 +11,7 @@ const CardFooter = styled.div`
 
 const ProductPrice = styled.span`
     position: absolute;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: #1c1c1c;
     font-size: 1rem;
@@ -32,7 +32,7 @@ const ProductTitle = styled.h3`
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     color: #ffba08;
-    font-size: 1rem;
+    font-size: 1.1rem;
 `;
 
 const CardBody = styled.div`
