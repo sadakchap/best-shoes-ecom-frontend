@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../layouts/Footer'
 import Navbar from '../../layouts/Navbar'
 
 const Base = ({ children }) => {
@@ -6,6 +7,7 @@ const Base = ({ children }) => {
         <>
             <Navbar />
             {children}
+            <Footer />
         </>
     )
 }
