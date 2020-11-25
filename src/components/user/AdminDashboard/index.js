@@ -49,7 +49,6 @@ const EarningsChart = ({ data }) => (
             tickSize: 5,
             legendOffset: -40,
         }}
-        useMesh={true}
     />
 )
 
