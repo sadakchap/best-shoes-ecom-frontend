@@ -112,7 +112,7 @@ const PaymentCallback = ({ match }) => {
                             <ItemDetail>
                                 <ItemName>{item.name}</ItemName>
                                 <ItemCategory>Category: <span>{item.category.name}</span></ItemCategory>
-                                <ItemPrice>$ {item.price}</ItemPrice> 
+                                <ItemPrice>₹ {item.price}</ItemPrice> 
                             </ItemDetail>
                         </CartItem>
                     ))}
