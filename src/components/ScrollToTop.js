@@ -11,6 +11,7 @@ const ScrollToTop = ({ history }) => {
         return () => {
             unlisten();
         }
+        // eslint-disable-next-line
   }, []);
     return (
         <React.Fragment />
