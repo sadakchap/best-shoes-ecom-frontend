@@ -47,11 +47,11 @@ const Footer = () => {
                         <FooterLinkList className="info">
                             <li>
                                 <span><BsCodeSlash /></span>
-                                <p><a href="#!">Frontend Code - GitHub</a></p> 
+                                <p><a target="_blank" rel="noreferrer" href="https://github.com/sadakchap/best-shoes-ecom-frontend">Frontend Code - GitHub</a></p> 
                             </li>
                             <li>
                                 <span><BsCodeSlash /></span>
-                                <p><a href="#!">Backend Code - GitHub</a></p> 
+                                <p><a target="_blank" rel="noreferrer" href="https://github.com/sadakchap/Best-shoes-ecom-backend">Backend Code - GitHub</a></p> 
                             </li>
                             <li>
                                 <span><IoIosRocket /></span>
