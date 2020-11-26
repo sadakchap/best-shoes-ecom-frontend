@@ -8,7 +8,7 @@ export const AdminWrapper = styled.div`
     display: flex;
     justify-content: center;
     color: #eee;
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 991px){
         display: block;
     }
 `;
@@ -19,12 +19,12 @@ export const LeftColumn = styled.div`
     background-color: '#01408e';
     z-index: 999;
     
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 991px){
         position: absolute;
         height: 100vh;
         width: 300px;
         transition: 300ms ease-in-out;
-        transform: ${({isOpen}) => isOpen && "translateX(-90%)"}
+        transform: ${({isOpen}) => !isOpen && "translateX(-90%)"};
     }
 `;
 
@@ -32,7 +32,7 @@ export const RightColumn = styled.div`
     position: relative;
     flex: 0.8;
     min-height: 100vh;
-    @media screen and (max-width: 768px){
+    @media screen and (max-width: 991px){
         left: 30px;
         width: calc(100% - 30px);
         height: 100vh;
@@ -112,6 +112,12 @@ export const Icon = styled.div`
     right: 1px;
     color: white;
     cursor: pointer;
+    display: none;
+
+    @media screen and (max-width: 991px){
+        display: block;
+    }
+
 `;
 
 export const HomeLink = styled(Link)`

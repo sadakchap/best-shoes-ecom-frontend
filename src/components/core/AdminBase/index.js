@@ -46,7 +46,7 @@ const AdminBase = ({ title, desc, children }) => {
     );
 
     const rightPanel = () => (
-        <AdminRightPanel>
+        <AdminRightPanel  onClick={() => sideNavOpen && setSideNavOpen(!sideNavOpen)} >
             <AdminHeaderContainer>
                 <div>
                     <AdminHeaderText>{title}</AdminHeaderText>
