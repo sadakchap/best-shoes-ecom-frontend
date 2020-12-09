@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import jwt from 'jsonwebtoken';
 import { toast, ToastContainer } from 'react-toastify';
-import { emptyCart, loadCart } from './core/helpers/cartHelper';
-import { createOrder } from './core/helpers/orderHelper';
-import { isAuth } from './auth/helpers/auth';
+import { emptyCart, loadCart } from '../core/helpers/cartHelper';
+import { createOrder } from '../core/helpers/orderHelper';
+import { isAuth } from '../auth/helpers/auth';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { 
     CartLeftPanel,
@@ -21,11 +21,11 @@ import {
     ItemPrice, 
     PriceTable,
     PriceTableWrapper
-} from './core/Cart/CartPageElements';
+} from '../core/Cart/CartPageElements';
 
-import { PrimaryButton } from './reuseableComponents/Buttons';
+import { PrimaryButton } from '../reuseableComponents/Buttons';
 import { Link, Redirect } from 'react-router-dom';
-import Base from './core/Base';
+import Base from '../core/Base';
 import { GiCancel } from 'react-icons/gi';
 
 

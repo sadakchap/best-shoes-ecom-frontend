@@ -7,6 +7,7 @@ import { ProductCardsWrapper } from './HomeElements';
 import { toast, ToastContainer } from "react-toastify";
 import useDebounce from '../../../hooks/useDebounce';
 import SearchInput from '../SearchInput.js';
+import Spinner from '../../util/Spinner';
 
 const Home = () => {
 
@@ -46,27 +47,30 @@ const Home = () => {
     const data = searchText ? filteredPrdoucts : products;
 
     return (
-        <Base>
-            <ToastContainer />
-            <HeroSection />
-            <SearchInput searchText={searchText} setSearchText={setSearchText} />
-            { !isComplete ? (
-                <>Loading....</>
+      <Base>
+        <ToastContainer />
+        <HeroSection />
+        <SearchInput searchText={searchText} setSearchText={setSearchText} />
+        {!isComplete || isSearching ? (
+          <Spinner />
+        ) : (
+          <ProductCardsWrapper>
+            {data.length ? (
+              data.map((product, idx) => (
+                <UserProductCard
+                  product={product}
+                  key={idx}
+                  setReload={setReload}
+                  reload={reload}
+                />
+              ))
             ) : (
-                <ProductCardsWrapper>
-                    {data.length ? (data.map((product, idx) => (
-                        <UserProductCard product={product} key={idx} setReload={setReload} reload={reload} />
-                    ))) : (
-                        isSearching ? (
-                            <>Loading....</>
-                        ) : (
-                            <>No results found!</>
-                        )
-                    )}
-                </ProductCardsWrapper>
+              <>No results found!</>
             )}
-        </Base>
-    )
+          </ProductCardsWrapper>
+        )}
+      </Base>
+    );
 }
 
 export default Home

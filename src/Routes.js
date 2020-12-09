@@ -12,10 +12,10 @@ import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Cart from './components/core/Cart';
 import Home from './components/core/Home';
-import PaymentCallback from './components/PaymentCallback';
+import PaymentCallback from './components/util/PaymentCallback';
 import AdminRoute from './components/protectedRoutes/AdminRoute';
 import PrivateRoute from './components/protectedRoutes/PrivateRoute';
-import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from './components/util/ScrollToTop';
 import AdminDashboard from './components/user/AdminDashboard';
 import UserDashboard from './components/user/UserDashboard';
 
