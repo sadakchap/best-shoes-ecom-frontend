@@ -83,7 +83,7 @@ const ProductCardWrapper = styled.div`
     }
 `;
 
-const UserProductCard = ({ product, setReload = f=>f, reload=undefined }) => {
+const UserProductCard = ({ product, setReload = f=>f, reload=undefined, childRef }) => {
     
     const productStatus = itemInCart(product._id);
     const history = useHistory();
@@ -102,23 +102,37 @@ const UserProductCard = ({ product, setReload = f=>f, reload=undefined }) => {
         }}> Remove from Cart</SecondaryButton>)
     );
     
-    return (
-        <ProductCardWrapper>
-            <ImgWrapper>
-                <ProductImg src={product.photo_url} />
-                <ProductPrice>₹ {product.price}</ProductPrice>
-            </ImgWrapper>
-            <CardBody>
-                <ProductTitle>{product.name}</ProductTitle>
-                <ProductDesc>{product.desc.substring(0, 70) + ' ...'}</ProductDesc>
-            </CardBody>
-            <CardFooter>
-                {showAddToCart()}
-                {showRemoveFromCart()}
-            </CardFooter>
-
-        </ProductCardWrapper>
-    )
+    return childRef ? (
+      <ProductCardWrapper ref={childRef ? childRef : null}>
+        <ImgWrapper>
+          <ProductImg src={product.photo_url} />
+          <ProductPrice>₹ {product.price}</ProductPrice>
+        </ImgWrapper>
+        <CardBody>
+          <ProductTitle>{product.name}</ProductTitle>
+          <ProductDesc>{product.desc.substring(0, 70) + " ..."}</ProductDesc>
+        </CardBody>
+        <CardFooter>
+          {showAddToCart()}
+          {showRemoveFromCart()}
+        </CardFooter>
+      </ProductCardWrapper>
+    ) : (
+      <ProductCardWrapper>
+        <ImgWrapper>
+          <ProductImg src={product.photo_url} />
+          <ProductPrice>₹ {product.price}</ProductPrice>
+        </ImgWrapper>
+        <CardBody>
+          <ProductTitle>{product.name}</ProductTitle>
+          <ProductDesc>{product.desc.substring(0, 70) + " ..."}</ProductDesc>
+        </CardBody>
+        <CardFooter>
+          {showAddToCart()}
+          {showRemoveFromCart()}
+        </CardFooter>
+      </ProductCardWrapper>
+    );
 }
 
 export default UserProductCard

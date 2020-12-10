@@ -1,76 +1,102 @@
-import React, { useEffect, useState} from 'react'
-import { getFilteredProducts, getProducts } from '../../admin/helpers/adminApicalls';
-import Base from '../Base'
-import HeroSection from '../HeroSection';
-import UserProductCard from '../UserProductCard';
-import { ProductCardsWrapper } from './HomeElements';
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { getFilteredProducts } from "../../admin/helpers/adminApicalls";
+import Base from "../Base";
+import HeroSection from "../HeroSection";
+import UserProductCard from "../UserProductCard";
+import { ProductCardsWrapper } from "./HomeElements";
 import { toast, ToastContainer } from "react-toastify";
-import useDebounce from '../../../hooks/useDebounce';
-import SearchInput from '../SearchInput.js';
-import Spinner from '../../util/Spinner';
+import useDebounce from "../../../hooks/useDebounce";
+import SearchInput from "../SearchInput.js";
+import useFetchProducts from "../../../hooks/useFetchProducts";
+import Spinner from "../../util/Spinner";
 
 const Home = () => {
+  const [reload, setReload] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [filteredPrdoucts, setFilteredPrdoucts] = useState([]);
+  const debouncedSearch = useDebounce(searchText, 500);
+  const [pageNumber, setPageNumber] = useState(1);
 
-    const [products, setProducts] = useState([]);
-    const [reload, setReload] = useState(false);
-    const [searchText, setSearchText] = useState('');
-    const [isSearching, setIsSearching] = useState(false);
-    const [filteredPrdoucts, setFilteredPrdoucts] = useState([]);
-    const [isComplete, setIsComplete] = useState(false);
-    const debouncedSearch = useDebounce(searchText, 500);
-
-    useEffect(() => {
-        getProducts().then(data => {
-            if(data.error){
-                return toast.error('Unable to fetch products info. Please try again later!')
-            }
-            setProducts(data);
-            setIsComplete(true);
-        }).catch(err => {
-            if(err?.response?.data?.error) return toast.error(err.response.data.error)
-            return toast.error('Unable to fetch products info. Please try again later!')
-        });
-    }, []);
-
-    useEffect(() => {
-        if(debouncedSearch){
-            setIsSearching(true);
-            getFilteredProducts(debouncedSearch).then(data => {
-                setIsSearching(false);
-                setFilteredPrdoucts(data);
-            }).catch(err => {
-
-            })
+  const { products, hasMore, isFetching, error } = useFetchProducts(pageNumber);
+  const observer = useRef();
+  const lastProductCardRef = useCallback(
+    (node) => {
+      if (isFetching || isSearching) return;
+      if (!node) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
         }
-    }, [debouncedSearch]);
+      });
+      observer.current.observe(node);
+    },
+    [isFetching, isSearching, hasMore]
+  );
 
-    const data = searchText ? filteredPrdoucts : products;
+  useEffect(() => {
+    if (debouncedSearch) {
+      setIsSearching(true);
+      getFilteredProducts(debouncedSearch)
+        .then((data) => {
+          setIsSearching(false);
+          setFilteredPrdoucts(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err?.response?.data?.error)
+            return toast.error(err.response.data.error);
+          return toast.error("Counldn't find any results now!");
+        });
+    }
+  }, [debouncedSearch]);
 
-    return (
-      <Base>
-        <ToastContainer />
-        <HeroSection />
-        <SearchInput searchText={searchText} setSearchText={setSearchText} />
-        {!isComplete || isSearching ? (
-          <Spinner />
-        ) : (
-          <ProductCardsWrapper>
-            {data.length ? (
-              data.map((product, idx) => (
+  const data = searchText ? filteredPrdoucts : products;
+
+  if (error) {
+    return toast.error(error);
+  }
+
+  return (
+    <Base>
+      <ToastContainer />
+      <HeroSection />
+      <SearchInput searchText={searchText} setSearchText={setSearchText} />
+      {isSearching && <Spinner />}
+      <ProductCardsWrapper>
+        {data.length ? (
+          data.map((product, idx) => {
+            if (data.length === idx + 1) {
+              return (
                 <UserProductCard
-                  product={product}
                   key={idx}
+                  product={product}
                   setReload={setReload}
                   reload={reload}
+                  childRef={lastProductCardRef}
                 />
-              ))
-            ) : (
-              <>No results found!</>
-            )}
-          </ProductCardsWrapper>
+              );
+            }
+            return (
+              <UserProductCard
+                product={product}
+                key={idx}
+                setReload={setReload}
+                reload={reload}
+              />
+            );
+          })
+        ) : (
+          <div style={{ textAlign: "center" }}>No results found!</div>
         )}
-      </Base>
-    );
-}
+      </ProductCardsWrapper>
+      {isFetching && <Spinner />}
+      {!hasMore && (
+        <div style={{ textAlign: "center" }}>Yeh! You have seen it all!</div>
+      )}
+    </Base>
+  );
+};
 
-export default Home
+export default Home;
