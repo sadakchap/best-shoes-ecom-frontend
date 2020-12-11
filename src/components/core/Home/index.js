@@ -63,9 +63,8 @@ const Home = () => {
       <ToastContainer />
       <HeroSection />
       <SearchInput searchText={searchText} setSearchText={setSearchText} />
-      {isSearching && <Spinner />}
       <ProductCardsWrapper>
-        {data && (
+        {data &&
           data.map((product, idx) => {
             if (data.length === idx + 1) {
               return (
@@ -86,12 +85,48 @@ const Home = () => {
                 reload={reload}
               />
             );
-          })
-        )}
+          })}
       </ProductCardsWrapper>
+      {!isFetching && !searchText && data.length === 0 && (
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "0.8rem",
+            fontWeight: "400",
+            color: "#555",
+            margin: "2em auto",
+          }}
+        >
+          No products found.
+        </div>
+      )}
+      {!isSearching && searchText && data.length === 0 && (
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "0.8rem",
+            fontWeight: "400",
+            color: "#555",
+            margin: "2em auto",
+          }}
+        >
+          No products found.
+        </div>
+      )}
       {isFetching && <Spinner />}
-      {!hasMore && (
-        <div style={{ textAlign: "center", fontSize: "0.8rem", fontWeight: "400", color: "#555", margin: "2em auto" }}>Yeh! You have reached the end of the list.</div>
+      {isSearching && searchText && <Spinner />}
+      {!hasMore && !searchText && (
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "0.8rem",
+            fontWeight: "400",
+            color: "#555",
+            margin: "2em auto",
+          }}
+        >
+          Yeh! You have reached the end of the list.
+        </div>
       )}
     </Base>
   );
