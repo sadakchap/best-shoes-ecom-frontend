@@ -9,6 +9,7 @@ export const StyledFooter = styled.footer`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    font-size: 0.85rem;
 
     @media screen and (max-width: 991px){
         padding: 40px;
@@ -93,6 +94,7 @@ export const FooterSocialIcons = styled.ul`
         text-decoration: none;
         border-radius: 4px;
         color: #fff;
+        font-size: 1.1rem;
 
         &:hover{
             background: #ff5900;
@@ -141,6 +143,7 @@ export const CopyRightText = styled.p`
     padding: 8px 100px;
     text-align: center;
     color: #999;
+    font-size: 0.85rem;
 
     @media screen and (max-width: 991px){
         padding: 8px 40px;
