@@ -65,7 +65,7 @@ const Home = () => {
       <SearchInput searchText={searchText} setSearchText={setSearchText} />
       {isSearching && <Spinner />}
       <ProductCardsWrapper>
-        {data.length ? (
+        {data && (
           data.map((product, idx) => {
             if (data.length === idx + 1) {
               return (
@@ -87,13 +87,11 @@ const Home = () => {
               />
             );
           })
-        ) : (
-          <div style={{ textAlign: "center" }}>No results found!</div>
         )}
       </ProductCardsWrapper>
       {isFetching && <Spinner />}
       {!hasMore && (
-        <div style={{ textAlign: "center" }}>Yeh! You have seen it all!</div>
+        <div style={{ textAlign: "center", fontSize: "0.8rem", fontWeight: "400", color: "#555", margin: "2em auto" }}>Yeh! You have reached the end of the list.</div>
       )}
     </Base>
   );

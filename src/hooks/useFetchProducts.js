@@ -5,7 +5,7 @@ import { API } from '../backend';
 const useFetchProducts = (pageNumber) => {
 
     const [products, setProducts] = useState([]);
-    const [hasMore, setHasMore] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
     const [isFetching, setIsFetching] = useState(true)
     const [error, setError] = useState('');
 
