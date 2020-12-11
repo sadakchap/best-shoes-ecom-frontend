@@ -85,7 +85,7 @@ export const NavItemLink = styled(Link)`
 
     @media screen and (max-width: 768px){
         justify-content: flex-start;
-        padding: 0 2rem;
+        padding: 0.5em 2rem;
     }
 `;
 
