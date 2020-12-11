@@ -21,14 +21,12 @@ const Footer = () => {
                 <FooterContainer>
                     <FooterSection className="aboutus">
                         <FooterHeaderText> About Us </FooterHeaderText>
-                        <FooterPText>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis repudiandae quaerat 
-                            veniam dolores consequatur deserunt. Dolor, nulla repellat ipsa sequi quis facilis ratione! Qui nulla 
-                            ratione deserunt, assumenda quaerat eum.</FooterPText>
+                        <FooterPText>This is a DEMO Ecommerce website. It has fully implemented cart functionality & An Admin Panel to add more products or manage this site. Admin panel also has some graphs for better visualization. It has fully functional PAYMENY GATEWAY using TEST credentials 😜.</FooterPText>
                         <FooterSocialIcons>
                             <li><a target="_blank" rel="noreferrer" href="https://github.com/sadakchap/"> <AiOutlineGithub /> </a></li>
                             <li><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/prerna-mehra/"> <AiFillLinkedin /> </a></li>
                             <li><a target="_blank" rel="noreferrer" href="https://www.instagram.com/prerna_mehraa/"> <AiOutlineInstagram /> </a></li>
-                            <li><a href="mailto:contact@prerna.com"> <AiOutlineMail /> </a></li>
+                            <li><a href="mailto:aliceprerna@gmail.com"> <AiOutlineMail /> </a></li>
                         </FooterSocialIcons>
                     </FooterSection>
 
@@ -62,7 +60,7 @@ const Footer = () => {
                 </FooterContainer>
             </StyledFooter>
             <CopyRightContainer>
-                <CopyRightText>Copyright © 2020 Prerna Mehra. All rights reserved</CopyRightText>
+                <CopyRightText>Copyright © 2020 Prerna Mehra. All rights reserved.</CopyRightText>
             </CopyRightContainer>
         </>
     )
