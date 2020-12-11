@@ -16,7 +16,6 @@ const useFetchProducts = (pageNumber) => {
             url: `${API}/products`,
             params: { page: pageNumber }
         }).then(res => {
-            console.log(res.data);
             setProducts(prevProducts => [...prevProducts, ...res.data])
             setIsFetching(false);
             setHasMore(res.data.length > 0);
