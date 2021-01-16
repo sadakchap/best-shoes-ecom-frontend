@@ -29,7 +29,10 @@ const Signin = () => {
         
         setValues({ ...values, isLoading: true });
         signin({ email , password }).then(data => {
-            if(data.error)  return toast.error(data.error);
+            if(data.error) { 
+                setValues({ ...values, isComplete: true });
+                return toast.error(data.error)
+            };
 
             authenticate(data, () => {
                 setValues({ 
