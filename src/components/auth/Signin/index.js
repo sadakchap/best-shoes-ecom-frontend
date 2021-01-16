@@ -14,13 +14,14 @@ const Signin = () => {
         email: '',
         password: '',
         isLoading: false,
-        isComplete: false
+        isComplete: false,
+        isError: false,
     });
     const history = useHistory();
     
     const handleChange = name => e => setValues({ ...values, [name]: e.target.value });
 
-    const { email, password, isLoading, isComplete } = values;
+    const { email, password, isLoading, isComplete, isError } = values;
     const handleSubmit = e => {
         e.preventDefault();
         if(!email || !password){
@@ -30,7 +31,7 @@ const Signin = () => {
         setValues({ ...values, isLoading: true });
         signin({ email , password }).then(data => {
             if(data.error) { 
-                setValues({ ...values, isComplete: true });
+                setValues({ ...values, isComplete: true, isError: true });
                 return toast.error(data.error)
             };
 
@@ -53,7 +54,7 @@ const Signin = () => {
             })
         }).catch(err => {
             if(err?.response?.data?.error) return toast.error(err.response.data.error);
-            setValues({ ...values, isComplete: true });
+            setValues({ ...values, isComplete: true, isError: true });
             return toast.error('Sorry, something went wrong!');
         });
     }
@@ -73,13 +74,16 @@ const Signin = () => {
                         <StyledInput type="password" placeholder="Password" onChange={handleChange("password")} value={password} />
                     </InputWrapper>
                     <br/>
-                    <PrimaryButton width="180px" type="submit" onClick={handleSubmit} disabled={isLoading || isComplete}>
-                        {!isComplete && "Sign in"}
+                    <PrimaryButton width="180px" type="submit" onClick={handleSubmit} disabled={isLoading}>
+                        {!isComplete && "Sign In"}
                         {isComplete && (
+                            isError ? "Sign In" : (
                             <>
                                 <FiCheck size="1.5rem" style={{ marginRight: '0.6em'}} />
-                                Success
+                                Redirecting
                             </>
+
+                            )
                         )}
                         <SpinnerWrapper isClicked={isLoading}>
                             <Spinner />
