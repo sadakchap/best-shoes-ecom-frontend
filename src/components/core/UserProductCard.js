@@ -76,7 +76,7 @@ const ProductCardWrapper = styled.div`
             left: 3%;
         }
         ${ProductPrice}{
-            right: 80%;
+            right: 75%;
         }
         box-shadow: 0 0 30px rgba(0, 0, 0, .1);
         transform: scale(1.06);
