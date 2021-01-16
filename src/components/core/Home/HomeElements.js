@@ -7,6 +7,6 @@ export const ProductCardsWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 270px));
     gap: 2.5rem 2rem;
-    grid-auto-rows: 400px;
+    grid-auto-rows: auto;
     justify-content: center;
 `;
