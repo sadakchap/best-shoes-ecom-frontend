@@ -29,9 +29,8 @@ const UpdateProduct = ({ match }) => {
 
     const preloadCategories = () => {
         getCategories().then(data => {
-            console.log(data);
             setCategories(data);
-            setValues({ ...values, formData: new FormData() });
+            // setValues({ ...values, formData: new FormData() });
         }).catch(err => {
             toast.error('Sorry, something went wrong. Please try again later!')
         });
@@ -115,53 +114,86 @@ const UpdateProduct = ({ match }) => {
     const { name, desc, price, stock, isLoading, isComplete, category, formData } = values;
 
     return (
-        <>
-            <ToastContainer />    
-            <AdminBase title="Update Product Details" desc="Here, you can easily update product details!">
-                <AdminFormWrapper>
-                    <AdminForm onSubmit={handleSubmit}>
-                        <InputWrapper>
-                            <StyledInput placeholder="Name" onChange={handleChange("name")} value={name} />
-                        </InputWrapper>
-                        <InputWrapper>
-                            <FormTextArea rows="8" placeholder="Add Product desciption" onChange={handleChange("desc")} value={desc}></FormTextArea>
-                        </InputWrapper>
-                        <InputFormGroup>
-                            <InputWrapper>
-                                <StyledInput placeholder="Price" type="Number" onChange={handleChange("price")} value={price} />
-                            </InputWrapper>
-                            <InputWrapper>
-                                <StyledInput placeholder="Stock" type="Number" onChange={handleChange("stock")} value={stock} />
-                            </InputWrapper>
-                        </InputFormGroup>
-                        <InputFormGroup>
-                            <InputWrapper>
-                                <StyledInput placeholder="Stock" type="file" onChange={handleChange("photo")} />
-                            </InputWrapper>
-                            <InputSelect name="category" onChange={handleChange("category")}>
-                                <option value="">Select Category</option>
-                                {categories && categories.map((cate, idx) => (
-                                    <option key={idx} value={cate._id} selected={category === cate._id ? "selected" : null} >{cate.name}</option>
-                                ))}
-                            </InputSelect>
-                        </InputFormGroup>
-                        <Button type="submit" disabled={isLoading || isComplete}>
-                            {!isComplete && "Save Product"}
-                            {isComplete && (
-                                <>
-                                    <FiCheck />
-                                    Success
-                                </>
-                            )}
-                            <SpinnerWrapper isClicked={isLoading} >
-                                <Spinner />
-                            </SpinnerWrapper>
-                        </Button>
-                    </AdminForm>
-                </AdminFormWrapper>
-            </AdminBase>
-        </>
-    )
+      <>
+        <ToastContainer />
+        <AdminBase
+          title="Update Product Details"
+          desc="Here, you can easily update product details!"
+        >
+          <AdminFormWrapper>
+            <AdminForm onSubmit={handleSubmit}>
+              <InputWrapper>
+                <StyledInput
+                  placeholder="Name"
+                  onChange={handleChange("name")}
+                  value={name}
+                />
+              </InputWrapper>
+              <InputWrapper>
+                <FormTextArea
+                  rows="8"
+                  placeholder="Add Product desciption"
+                  onChange={handleChange("desc")}
+                  value={desc}
+                ></FormTextArea>
+              </InputWrapper>
+              <InputFormGroup>
+                <InputWrapper>
+                  <StyledInput
+                    placeholder="Price"
+                    type="Number"
+                    onChange={handleChange("price")}
+                    value={price}
+                  />
+                </InputWrapper>
+                <InputWrapper>
+                  <StyledInput
+                    placeholder="Stock"
+                    type="Number"
+                    onChange={handleChange("stock")}
+                    value={stock}
+                  />
+                </InputWrapper>
+              </InputFormGroup>
+              <InputFormGroup>
+                <InputWrapper>
+                  <StyledInput
+                    placeholder="Stock"
+                    type="file"
+                    onChange={handleChange("photo")}
+                  />
+                </InputWrapper>
+                <InputSelect
+                  value={category}
+                  name="category"
+                  onChange={handleChange("category")}
+                >
+                  <option>Select Category</option>
+                  {categories &&
+                    categories.map((cate, idx) => (
+                      <option key={idx} value={cate._id}>
+                        {cate.name}
+                      </option>
+                    ))}
+                </InputSelect>
+              </InputFormGroup>
+              <Button type="submit" disabled={isLoading || isComplete}>
+                {!isComplete && "Save Product"}
+                {isComplete && (
+                  <>
+                    <FiCheck />
+                    Success
+                  </>
+                )}
+                <SpinnerWrapper isClicked={isLoading}>
+                  <Spinner />
+                </SpinnerWrapper>
+              </Button>
+            </AdminForm>
+          </AdminFormWrapper>
+        </AdminBase>
+      </>
+    );
 }
 
 export default UpdateProduct
